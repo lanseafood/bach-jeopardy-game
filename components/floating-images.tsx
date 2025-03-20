@@ -18,9 +18,10 @@ interface FloatingItem {
 
 interface FloatingImagesProps {
   background?: boolean
+  showFloatingHeads?: boolean
 }
 
-export default function FloatingImages({ background = false }: FloatingImagesProps) {
+export default function FloatingImages({ background = false, showFloatingHeads = true }: FloatingImagesProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const itemsRef = useRef<FloatingItem[]>([])
   const animationRef = useRef<number>(0)
@@ -174,7 +175,7 @@ export default function FloatingImages({ background = false }: FloatingImagesPro
   return (
     <div ref={containerRef} className={`fixed inset-0 pointer-events-none ${background ? 'z-0' : 'z-50'} overflow-hidden`}>
       {/* Render first set of floating heads */}
-      {Array(1)
+      {showFloatingHeads && Array(1)
         .fill(0)
         .map((_, id) => (
           <div
@@ -198,7 +199,7 @@ export default function FloatingImages({ background = false }: FloatingImagesPro
         ))}
 
       {/* Render second set of floating heads */}
-      {Array(1)
+      {showFloatingHeads && Array(1)
         .fill(0)
         .map((_, id) => (
           <div
@@ -220,7 +221,7 @@ export default function FloatingImages({ background = false }: FloatingImagesPro
             />
           </div>
         ))}
-        {Array(1)
+        {showFloatingHeads && Array(1)
         .fill(0)
         .map((_, id) => (
           <div
@@ -242,7 +243,7 @@ export default function FloatingImages({ background = false }: FloatingImagesPro
             />
           </div>
         ))}
-        {Array(1)
+        {showFloatingHeads && Array(1)
         .fill(0)
         .map((_, id) => (
           <div
@@ -265,7 +266,7 @@ export default function FloatingImages({ background = false }: FloatingImagesPro
           </div>
         ))}
 
-        {Array(1)
+        {showFloatingHeads && Array(1)
         .fill(0)
         .map((_, id) => (
           <div

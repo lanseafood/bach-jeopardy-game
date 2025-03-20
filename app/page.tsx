@@ -10,7 +10,7 @@ import StaticTwinkles from "@/components/static-twinkles"
 export default function LandingPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-pink-300 via-blue-400 to-indigo-600 text-sunset-charcoal flex flex-col items-center justify-center">
-      <FloatingImages />
+      <FloatingImages showFloatingHeads={false} />
       <StaticTwinkles />
       
       <div className="text-center z-10 relative">
