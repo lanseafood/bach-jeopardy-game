@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 
 interface Firework {
-  id: number
+  id: string
   x: number
   y: number
   particles: Array<{
@@ -41,7 +41,7 @@ export default function Fireworks() {
       }))
 
       return {
-        id: Date.now(),
+        id: `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
         x,
         y,
         particles
