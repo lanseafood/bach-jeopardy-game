@@ -205,9 +205,9 @@ export default function QuestionPage({ params }: { params: Promise<{ category: s
         <div className="bg-white rounded-lg shadow-lg p-8 max-w-4xl w-full text-center border-2 border-sunset-blue">
           <h1 className="text-3xl font-bold mb-8 text-sunset-blue">Question Not Found</h1>
           <p className="text-xl mb-8 text-sunset-charcoal">Sorry, we couldn't find this question.</p>
-          <Link href="/">
+          <Link href="/game">
             <Button className="ml-8 mr-8 text-lg px-8 py-6 bg-sunset-lavender text-sunset-charcoal hover:bg-sunset-yellow">
-              Return to Slyaron Jeopardy Board
+              Return to Board
             </Button>
           </Link>
         </div>
@@ -245,9 +245,9 @@ export default function QuestionPage({ params }: { params: Promise<{ category: s
             )}
           </div>
         )}
-        <Link href="/">
+        <Link href="/game">
           <Button className="ml-8 mr-8 text-lg px-8 py-6 bg-sunset-lavender text-sunset-charcoal hover:bg-sunset-yellow">
-            Return to Slyaron Jeopardy Board
+            Return to Board
           </Button>
         </Link>
       </div>
