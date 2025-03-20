@@ -116,6 +116,23 @@ module.exports = {
           "20%": { opacity: "1" },
           "80%": { opacity: "1" },
           "100%": { opacity: "0" }
+        },
+        "firework": {
+          "0%": { 
+            transform: "translate(0, 0) scale(1)",
+            opacity: ".4",
+            filter: "brightness(1)"
+          },
+          "50%": { 
+            transform: "translate(var(--x), var(--y)) scale(0.5)",
+            opacity: "0.9",
+            filter: "brightness(1.2)"
+          },
+          "100%": { 
+            transform: "translate(var(--x), var(--y)) scale(0)",
+            opacity: "0",
+            filter: "brightness(0.8)"
+          }
         }
       },
       animation: {
@@ -125,7 +142,8 @@ module.exports = {
         "fade-in-scale": "fade-in-scale 0.5s ease-out forwards",
         "bounce-subtle": "bounce-subtle 2s infinite",
         "shooting-star": "shooting-star 1s ease-out forwards",
-        "twinkle": "twinkle 3s ease-in-out infinite"
+        "twinkle": "twinkle 3s ease-in-out infinite",
+        "firework": "firework 3s ease-out forwards"
       },
     },
   },
