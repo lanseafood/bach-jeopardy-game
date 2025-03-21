@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, use } from "react"
+import { useState, useEffect, useRef, use } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import FloatingImages from "@/components/floating-images"
@@ -16,21 +16,21 @@ const questions: Record<string, Record<number, { question: string; answer: strin
       question: "What was the most embarrassing thing that happened on your first date?",
       answer: {
         type: "video",
-        content: "https://example.com/past_200_first_date.mp4",
+        content: "/videos/past_2.mov",
       },
     },
     300: {
       question: 'When did you realize he was "the one"? (And how much wine was involved?)',
       answer: {
         type: "video",
-        content: "https://example.com/past_300_the_one.mp4",
+        content: "/videos/past_3.mov",
       },
     },
     400: {
       question: "If he had to describe his flirting style back then, what would he say?",
       answer: {
         type: "video",
-        content: "https://example.com/past_400_flirting_style.mp4",
+        content: "/videos/past_4.mov",
       },
     },
     500: {
@@ -47,14 +47,14 @@ const questions: Record<string, Record<number, { question: string; answer: strin
       question: 'Who said "I love you" first, and how long did it take?',
       answer: {
         type: "video",
-        content: "https://example.com/past_700_love_you.mp4",
+        content: "/videos/past_7.mov",
       },
     },
     800: {
       question: "What's a challenge you both faced early on that made your relationship stronger?",
       answer: {
         type: "video",
-        content: "https://example.com/past_800_challenge.mp4",
+        content: "/videos/past_8.mov",
       },
     },
   },
@@ -68,21 +68,21 @@ const questions: Record<string, Record<number, { question: string; answer: strin
       question: "Daily Double!!",
       answer: {
         type: "video",
-        content: "https://example.com/present_300_chore.mp4",
+        content: "/videos/ily.mov",
       },
     },
     300: {
       question: "What's the one chore he thinks he does well but really doesn't?",
       answer: {
         type: "video",
-        content: "https://example.com/present_300_chore.mp4",
+        content: "/videos/present_3.mov",
       },
     },
     400: {
       question: "What's his go-to excuse when he doesn't want to do something?",
       answer: {
         type: "video",
-        content: "https://example.com/present_400_excuse.mp4",
+        content: "/videos/present_4.mov",
       },
     },
     500: {
@@ -99,14 +99,14 @@ const questions: Record<string, Record<number, { question: string; answer: strin
       question: "What's his favorite way to show affection when no one is watching?",
       answer: {
         type: "video",
-        content: "https://example.com/present_700_affection.mp4",
+        content: "/videos/present_7.mov",
       },
     },
     800: {
       question: "What's a personality trait of his that you admire the most?",
       answer: {
         type: "video",
-        content: "https://example.com/present_800_trait.mp4",
+        content: "/videos/present_8.mov",
       },
     },
   },
@@ -120,7 +120,7 @@ const questions: Record<string, Record<number, { question: string; answer: strin
       question: "What's one thing about your relationship that you hope never changes?",
       answer: {
         type: "video",
-        content: "https://example.com/future_200_never_change.mp4",
+        content: "/videos/future_2.mov",
       },
     },
     300: {
@@ -132,21 +132,21 @@ const questions: Record<string, Record<number, { question: string; answer: strin
       question: "If you could predict one ridiculous argument you'll have as a married couple, what will it be about?",
       answer: {
         type: "video",
-        content: "https://example.com/future_400_argument.mp4",
+        content: "/videos/future_4.mov",
       },
     },
     500: {
       question: "What's a tradition you can't wait to start together?",
       answer: {
         type: "video",
-        content: "https://example.com/future_500_tradition.mp4",
+        content: "/videos/future_5.mov",
       },
     },
     600: {
       question: "If he planned a surprise date night for you, what would it involve?",
       answer: {
         type: "video",
-        content: "https://example.com/future_600_date_night.mp4",
+        content: "/videos/future_6.mov",
       },
     },
     700: {
@@ -158,7 +158,7 @@ const questions: Record<string, Record<number, { question: string; answer: strin
       question: "What are you most looking forward to in your future together?",
       answer: {
         type: "video",
-        content: "https://example.com/future_800_looking_forward.mp4",
+        content: "/videos/future_8.mov",
       },
     },
   },
@@ -169,8 +169,9 @@ export default function QuestionPage({ params }: { params: Promise<{ category: s
   const { category, points } = use(params)
   const decodedCategory = decodeURIComponent(category)
   const questionKey = `${decodedCategory}-${points}`
+  const videoRef = useRef<HTMLVideoElement>(null)
 
-  // When the answer is shown, update localStorage
+  // When the answer is shown, update localStorage and play video if it's a video answer
   useEffect(() => {
     if (showAnswer && typeof window !== "undefined") {
       // Get current shown answers from localStorage
@@ -192,8 +193,14 @@ export default function QuestionPage({ params }: { params: Promise<{ category: s
         // Save back to localStorage
         localStorage.setItem("showAnswers", JSON.stringify(showAnswers))
       }
+
+      // Play video if it's a video answer
+      const questionData = questions[decodedCategory]?.[Number.parseInt(points)]
+      if (questionData && typeof questionData.answer !== "string" && videoRef.current) {
+        videoRef.current.play()
+      }
     }
-  }, [showAnswer, questionKey])
+  }, [showAnswer, questionKey, decodedCategory, points])
 
   // Add error handling to prevent crashes
   const questionData = questions[decodedCategory]?.[Number.parseInt(points)]
@@ -237,7 +244,13 @@ export default function QuestionPage({ params }: { params: Promise<{ category: s
               <div className="text-xl text-left whitespace-pre-line text-sunset-charcoal">{questionData.answer}</div>
             ) : (
               <div className="flex justify-center">
-                <video controls className="w-full max-w-2xl border-2 border-sunset-blue rounded-lg">
+                <video 
+                  ref={videoRef}
+                  controls 
+                  autoPlay 
+                  muted
+                  className="w-full max-w-2xl border-2 border-sunset-blue rounded-lg"
+                >
                   <source src={questionData.answer.content} type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
