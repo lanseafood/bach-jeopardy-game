@@ -248,7 +248,6 @@ export default function QuestionPage({ params }: { params: Promise<{ category: s
                   ref={videoRef}
                   controls 
                   autoPlay 
-                  // muted
                   className="w-full max-w-2xl border-2 border-sunset-blue rounded-lg"
                 >
                   <source src={questionData.answer.content} type="video/mp4" />
