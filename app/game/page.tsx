@@ -5,6 +5,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import FloatingImages from "@/components/floating-images"
+import VideoPreloader from "@/components/video-preloader"
 
 const categories = ["⏳ THE PAST", "🎁 THE PRESENT", "💫 THE FUTURE"]
 const pointValues = [100, 200, 300, 400, 500, 600, 700, 800]
@@ -42,6 +43,7 @@ export default function JeopardyBoard() {
     <div className="min-h-screen bg-gradient-to-b from-sunset-pink to-[#FF6F91] text-sunset-charcoal">
       {/* Floating Images */}
       <FloatingImages />
+      <VideoPreloader />
 
       <div className="container mx-auto flex-1 flex flex-col">
         <div className="flex justify-between items-center mb-8 mt-12 px-6">

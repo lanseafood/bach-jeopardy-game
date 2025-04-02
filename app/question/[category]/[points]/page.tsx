@@ -168,6 +168,11 @@ const questions: Record<string, Record<number, { question: string; answer: strin
 
 export default function QuestionPage({ params }: { params: Promise<{ category: string; points: string }> }) {
   const [showAnswer, setShowAnswer] = useState(false)
+  const [isVideoLoading, setIsVideoLoading] = useState(true)
+  const [isVideoReady, setIsVideoReady] = useState(false)
+  const [videoError, setVideoError] = useState(false)
+  const [retryCount, setRetryCount] = useState(0)
+  const maxRetries = 3
   const { category, points } = use(params)
   const decodedCategory = decodeURIComponent(category)
   const questionKey = `${decodedCategory}-${points}`
@@ -224,6 +229,18 @@ export default function QuestionPage({ params }: { params: Promise<{ category: s
     )
   }
 
+  const handleVideoLoad = () => {
+    setIsVideoLoading(false)
+    setIsVideoReady(true)
+  }
+
+  const handleVideoError = () => {
+    setVideoError(true)
+    if (retryCount < maxRetries) {
+      setRetryCount(prev => prev + 1)
+    }
+  }
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-sunset-pink to-[#FF6F91] p-4 relative">
       <FloatingImages background={true} />
@@ -246,15 +263,42 @@ export default function QuestionPage({ params }: { params: Promise<{ category: s
               <div className="text-xl text-left whitespace-pre-line text-sunset-charcoal">{questionData.answer}</div>
             ) : (
               <div className="flex justify-center">
-                <video 
-                  ref={videoRef}
-                  controls 
-                  autoPlay 
-                  className="w-full max-w-2xl border-2 border-sunset-blue rounded-lg"
-                >
-                  <source src={questionData.answer.content} type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
+                <div className="relative">
+                  {isVideoLoading && (
+                    <div className="absolute inset-0 flex items-center justify-center bg-sunset-cream/80">
+                      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-sunset-blue"></div>
+                    </div>
+                  )}
+                  {videoError && retryCount < maxRetries && (
+                    <div className="absolute inset-0 flex items-center justify-center bg-sunset-cream/80">
+                      <div className="text-center">
+                        <p className="text-sunset-charcoal mb-4">Loading video... Attempt {retryCount + 1} of {maxRetries}</p>
+                        <Button
+                          onClick={() => {
+                            setVideoError(false)
+                            setIsVideoLoading(true)
+                            setIsVideoReady(false)
+                          }}
+                          className="bg-sunset-lavender text-sunset-charcoal hover:bg-sunset-yellow"
+                        >
+                          Retry
+                        </Button>
+                      </div>
+                    </div>
+                  )}
+                  <video 
+                    ref={videoRef}
+                    controls 
+                    autoPlay 
+                    className="w-full max-w-2xl border-2 border-sunset-blue rounded-lg"
+                    onLoadedData={handleVideoLoad}
+                    onError={handleVideoError}
+                    preload="metadata"
+                  >
+                    <source src={questionData.answer.content} type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
               </div>
             )}
           </div>
