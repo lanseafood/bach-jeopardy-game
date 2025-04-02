@@ -23,14 +23,14 @@ const questions: Record<string, Record<number, { question: string; answer: strin
       question: 'When did you realize he was "the one"? (And how much wine was involved?)',
       answer: {
         type: "video",
-        content: "/videos/past_3.mov",
+        content: "/videos/past_3.mp4",
       },
     },
     400: {
       question: "If he had to describe his flirting style back then, what would he say?",
       answer: {
         type: "video",
-        content: "/videos/past_4.mov",
+        content: "/videos/past_4.mp4",
       },
     },
     500: {
@@ -41,7 +41,7 @@ const questions: Record<string, Record<number, { question: string; answer: strin
     600: {
       question: 'If you had met in high school, would you have dated him or put him in the "friend zone"?',
       answer:
-        "Good question.\n\nIf you ask her, she would probably say she would have dated me.\n\nIf you ask me? I absolutely would have dated her.\n\nIn fact, a joke I make is that she was:\n• Attractive.\n• Smart.\n• A cheerleader.\n• Also crazy nerdy—played video games, went to Comic-Con, had weird hobbies.\n\nHigh school me would have thought he hit the jackpot.\n\nBut her, on the other hand?\n\nI was still finding myself in high school.\n\nI was a very quiet kid up through middle school. Then I switched schools for high school and started trying on a new personality.\n\nI was much louder, a lot more boisterous—which isn't inherently bad. But it was also less refined than it is now.\n\nSylvia needs balance, and back then, I didn't have much of it.\n\nShe also likes people with a broad, diverse set of interests. That wasn't me back then. I was pretty nerdy, liked video games, and listened to some music—but I didn't have many other notable hobbies.\n\nSo, I think I'm lucky that we met when we did—because I had time to mature, even out, and grow into the person I am now.",
+        "If you ask her, she would probably say she would have dated me.\n\nIf you ask me? I absolutely would have dated her.\n\nIn fact, I definitely joke that she would have been the what I would have described as my perfect girl in Highschool. Attractive, Smart, a Cheerleader, and Super Nerdy. It was a combo that I didn't really think existed. High school me would have thought he hit the jackpot (and present me still does feel that way).\nBut her, on the other hand?\nI was still finding myself in high school. I was a very quiet kid up through middle school. Then I switched schools for high school and started trying on a new personality. I was much louder, a lot more boisterous—which isn't inherently bad. But it was also less refined than it is now.\n\nSylvia appreciates some of those qualities - but in much more balance. And back then I didn't have a ton of it.\n\nShe also likes people with a broad, diverse set of interests. That wasn't me back then. I was pretty nerdy, liked video games, and listened to some music—but I didn't have many other notable hobbies.\n\nSo, I think I'm lucky that we met when we did—because I had time to mature, even out, and grow into the person I am now.",
     },
     700: {
       question: 'Who said "I love you" first, and how long did it take?',
@@ -62,7 +62,7 @@ const questions: Record<string, Record<number, { question: string; answer: strin
     100: {
       question: "What's his most endearing yet slightly annoying habit?",
       answer:
-        "If the question were reversed, I'd have an immediate answer—Sylvia's most endearing yet slightly annoying habit is her need to talk during TV and movies.\n\nIt's a regular occurrence. She'll turn to me and either:\n• Express some theory she has,\n• Ask me what's going on,\n• And then, because we both missed something, say: \"Wait, wait—what? Now what's going on?\"\n\nDefinitely annoying. But also… kind of endearing.\n\nFor me, I think my most endearing yet slightly annoying habit is my commitment to going out for drinks on Tuesday nights.\n\nI think it's annoying because it takes away a night of the week for planning things together. There have been pop-ups, concerts, events that Sylvia wanted to go to that I had to miss because they were on a Tuesday.\n\nBut I also think she finds it endearing because part of what she loves about me is my loyalty to my friend group and my tenacity in keeping up these connections.\n\nIf you're looking for my habit that annoys her most - and she probably doesn't find it endearing - it's my challenge in keeping up with the rate of messages she sends me on Instagram. There's so much good content there - but I open it way less frequently than she does - so I end up missing things.",
+        "If the question were reversed, I'd have an immediate answer—Sylvia's most endearing yet slightly annoying habit is her need to talk during TV and movies.\n\nMy favorite version of it ends up being: Sylvia expresses some theory she has, but then misses portions of the dialog or action as she's doing so. And then she asked me what just happened, even though I was listening to what she had to say and also missed whatever plot point is going on.\n\nDefinitely annoying. But also… kind of endearing.\n\nFor if it's about me, I think it's a tie between two. Sylvia hates that I don't let people eat in my car. Eating during road trips, I've come to learn, is in, like, her top 5 favorite things to do. The other most endearing yet slightly annoying habit has been my commitment to going out for drinks on Tuesday nights.\n\nIt's annoying because it takes away a night of the week for planning things together. There have been pop-ups, concerts, events that Sylvia wanted to go to that I had to miss because they were on a Tuesday. Though, it rarely stops her from doing it. I remember finding out that she was watching a ton of movies in theaters, but I never knew because she was always back before I was! But I also think she finds it endearing because part of what she loves about me is my loyalty to my friend group and my tenacity in keeping up these connections.\n\nAnd finally, If you're looking for my habit that annoys her most - but that she doesn't find endearing - it's my struggle to keep up with the rate of messages she sends me on Instagram. There's so much good content there - but I open it way less frequently than she does - so I end up missing most things.",
     },
     200: {
       question: "Daily Double!!",
@@ -75,7 +75,7 @@ const questions: Record<string, Record<number, { question: string; answer: strin
       question: "What's the one chore he thinks he does well but really doesn't?",
       answer: {
         type: "video",
-        content: "/videos/present_3.mov",
+        content: "/videos/present_3.mp4",
       },
     },
     400: {
@@ -88,12 +88,12 @@ const questions: Record<string, Record<number, { question: string; answer: strin
     500: {
       question: "What's the weirdest thing he's ever bought that made you question his decision-making skills?",
       answer:
-        "In my office, there's a box.\n\nIt's from The Boring Company.\n\nIt's a flamethrower.\n\n(Well, really, it's a \"not a flamethrower.\")\n\nI think it baffles her even more because… I have never used it.\n\nIt just sits there, in the packaging, collecting dust.\n\nIt also doesn't help that it's an Elon Musk product - but in my defense, I got it when he was a weirdo who wanted to make the world generally better compared to whatever he's doing now…",
+        "This is an incredibly easy one. In my office, there's a box. It's something that I paid $500 for. It's from The Boring Company. It's a Flamethrower. Well, really, due to states taking issue with a company shipping flamethrowers across the US - it was renamed to be a Not A Flamethrower.\n\nI think it baffles her even more because I have never used it. It just sits there, in the packaging, collecting dust.\n\nIt also doesn't help that it's an Elon Musk product - but in my defense, I got it when he was a weirdo who wanted to make the world generally better compared to whatever he's doing now…",
     },
     600: {
       question: "What's the one thing you do that instantly makes him laugh?",
       answer:
-        "My goal with Sylvia is not just to make her laugh—my real goal is to get the scrunched-up face, the head tilt, or the eye roll when I tell a terrible joke.\n\nShe finds it endlessly amusing when I make awful, dad-level jokes.\n\nBut I think what really gets her to laugh is when I do something goofy.\n\nShe sees me as a very serious person, and I don't do goofy things that often. Over time, she's rubbed off on me, and I do more goofy things than I used to—which always gets a chuckle out of her.",
+        "So, my goal with Sylvia is not just to make her laugh, but it's to get a real reaction from her based on what I say. A scrunched up face, a groan, or my favorite - an eye roll when I tell an especially terrible joke. I'm convinced that she finds it endlessly amusing when I make awful, dad-level jokes, even though she doesn't express it as laughter…\n\nBut I think what really gets her to laugh is when I do something goofy. She sees me as a very serious person, and I don't do goofy things that often. Over time, she's rubbed off on me, and I do more goofy things than I used to - which always gets a chuckle out of her.",
     },
     700: {
       question: "What's his favorite way to show affection when no one is watching?",
@@ -114,7 +114,7 @@ const questions: Record<string, Record<number, { question: string; answer: strin
     100: {
       question: "Who will be the first to break a household rule, and what will it be?",
       answer:
-        "We're a pretty rules-light household.\n\nBut if I had to pick… I think we'd both break different rules:\n• Sylvia is the one who—when we're trying to eat healthy—is most likely to bring back sweets, pastries, and delicious things.\n• Me? I am the one most likely to finish them all.\n\nShe has this thing where she'll take a single spoonful of ice cream, then leave the pint in the freezer for weeks.\n\nMeanwhile, I will eventually notice we have ice cream in the freezer and proceed to eat all but a spoonful or two.\n\nI could just finish the pint and throw it away.\n\nBut I learned my lesson early in the pandemic, when we were sharing a dessert, and I took the last bite—Sylvia was furious.\n\nSo now I always leave one last bite for her… even if it means she gets mad at me for finishing the whole thing except a spoonful.",
+        "We're a pretty rules-light household.\n\nBut if I had to pick… I think we'd both break different rules:\nSylvia is the one who - when we're trying to eat healthy - is most likely to bring back sweets, pastries, and delicious things.\nMe? I am the one most likely to finish them all.\n\nThis probably shows up most when she comes back home with pints of ice cream. Sylvia has this habit where she'll take a single spoonful of ice cream, then leave the pint in the freezer for weeks. Meanwhile, I will eventually notice we have ice cream in the freezer and proceed to eat all but a spoonful or two.\n\nI could just finish the pint and throw it away. But I learned about an unspoken household rule that I will never again break. Early on in the pandemic, when we were sharing a dessert, I took the last bite. Sylvia was a mix of crest-fallen and furious.\n\nSo now I always leave one last bite for her… Even if it means she gets mad at me for finishing the whole thing except a spoonful.\n\nThere is, also, a household rule, that I know Sylvia intends to break at some point. It's my no-eating-in-the-car rule. Of which she has stated in no uncertain terms that she does not intend to follow it when she's pregnant.",
     },
     200: {
       question: "What's one thing about your relationship that you hope never changes?",
@@ -137,10 +137,12 @@ const questions: Record<string, Record<number, { question: string; answer: strin
     },
     500: {
       question: "What's a tradition you can't wait to start together?",
-      answer: {
-        type: "video",
-        content: "/videos/future_5.mov",
-      },
+      answer: 
+      "It's funny, I think this is a story that I haven't told Sylvia, yet. But I also think it explains why I choose to wait for her, hungry, as she squeezes in hobbies and gym sessions after an already late work day.\n\nGrowing up, I was always slightly annoyed because we would eat dinner super late—like 8:00 or 8:30 PM.\n\nI always thought it was because things were just running late, or that dinner was an afterthought.\n\nBut when I asked my mom about it later, she gave me a simple answer:\n\n``We eat late because your dad works far away, and I want to make sure that there's food ready for him when he gets home. It's important to me that we eat together as a family.``\n\nThat always stuck with me.\n\nSo, the tradition I want?\n\nA simple one: spending dinners together—as often as we can, as a whole family.\n\nSitting down, talking about our days, spending time together."
+      // answer: {
+      //   type: "video",
+      //   content: "/videos/future_5.mov",
+      // },
     },
     600: {
       question: "If he planned a surprise date night for you, what would it involve?",
@@ -152,7 +154,7 @@ const questions: Record<string, Record<number, { question: string; answer: strin
     700: {
       question: "What's one thing you'll love about him even when you're both old and gray?",
       answer:
-        "I don't know… maybe loyalty?\n\nNo—not my sense of humor.\n\nI think she'll love a lot of things about me when I'm old and gray.\n\nWe both feel very secure in our relationship.\n\nI think she will still love that we support each other, make each other feel secure, and prioritize each other's happiness.\n\nBut I'll probably come back to this one.",
+        "She'll never admit it, but I'm convinced it's my sense of humor. As terrible as the jokes I make are, I am certain that they bring her secret joy and comfort!\n\nOr my warmth. When we get in bed, she sticks her ice cold feet (they are somehow always ice cold!) on my bare skin, for warmth. At this point I expect that routine to continue, even when we're both old and gray!",
     },
     800: {
       question: "What are you most looking forward to in your future together?",
