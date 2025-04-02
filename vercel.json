@@ -13,7 +13,8 @@
   "buildCommand": "npm run build",
   "installCommand": "npm install",
   "framework": "nextjs",
-  "regions": ["sfo1", "hnd1", "fra1", "cdg1", "lhr1"],
+  "regions": ["sfo1"],
+  // "regions": ["sfo1", "hnd1", "fra1", "cdg1", "lhr1"],
   "git": {
     "deploymentEnabled": {
       "main": true
