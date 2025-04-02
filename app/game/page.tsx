@@ -5,7 +5,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import FloatingImages from "@/components/floating-images"
-import VideoPreloader from "@/components/video-preloader"
+import { useSearchParams } from "next/navigation"
 
 const categories = ["⏳ THE PAST", "🎁 THE PRESENT", "💫 THE FUTURE"]
 const pointValues = [100, 200, 300, 400, 500, 600, 700, 800]
@@ -13,6 +13,7 @@ const pointValues = [100, 200, 300, 400, 500, 600, 700, 800]
 export default function JeopardyBoard() {
   const [showAnswers, setShowAnswers] = useState<Set<string>>(new Set())
   const [isClient, setIsClient] = useState(false)
+  const searchParams = useSearchParams()
 
   // Set isClient to true once component mounts
   useEffect(() => {
@@ -22,17 +23,26 @@ export default function JeopardyBoard() {
   // Load answered questions from localStorage on component mount
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const storedShowAnswers = localStorage.getItem("showAnswers")
-
-      if (storedShowAnswers) {
-        try {
-          setShowAnswers(new Set(JSON.parse(storedShowAnswers)))
-        } catch (e) {
-          console.error("Error parsing showAnswers from localStorage", e)
+      // Only reset on fresh visits (no search params)
+      const isFreshVisit = !searchParams.toString()
+      
+      if (isFreshVisit) {
+        // Clear localStorage for fresh visits
+        localStorage.removeItem("showAnswers")
+        setShowAnswers(new Set())
+      } else {
+        // Load state for normal navigation
+        const storedShowAnswers = localStorage.getItem("showAnswers")
+        if (storedShowAnswers) {
+          try {
+            setShowAnswers(new Set(JSON.parse(storedShowAnswers)))
+          } catch (e) {
+            console.error("Error parsing showAnswers from localStorage", e)
+          }
         }
       }
     }
-  }, [])
+  }, [searchParams])
 
   // Only render client-side content after hydration
   if (!isClient) {
@@ -43,11 +53,10 @@ export default function JeopardyBoard() {
     <div className="min-h-screen bg-gradient-to-b from-sunset-pink to-[#FF6F91] text-sunset-charcoal">
       {/* Floating Images */}
       <FloatingImages />
-      <VideoPreloader />
 
       <div className="container mx-auto flex-1 flex flex-col">
         <div className="flex justify-between items-center mb-8 mt-12 px-6">
-          <Link href="/">
+          <Link href="/?state=preserved">
             <Button 
               className="bg-sunset-lavender text-sunset-charcoal hover:bg-sunset-yellow"
             >
