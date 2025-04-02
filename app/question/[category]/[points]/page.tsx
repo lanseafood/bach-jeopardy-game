@@ -137,12 +137,12 @@ const questions: Record<string, Record<number, { question: string; answer: strin
     },
     500: {
       question: "What's a tradition you can't wait to start together?",
-      answer: 
-      "It's funny, I think this is a story that I haven't told Sylvia, yet. But I also think it explains why I choose to wait for her, hungry, as she squeezes in hobbies and gym sessions after an already late work day.\n\nGrowing up, I was always slightly annoyed because we would eat dinner super late—like 8:00 or 8:30 PM.\n\nI always thought it was because things were just running late, or that dinner was an afterthought.\n\nBut when I asked my mom about it later, she gave me a simple answer:\n\n``We eat late because your dad works far away, and I want to make sure that there's food ready for him when he gets home. It's important to me that we eat together as a family.``\n\nThat always stuck with me.\n\nSo, the tradition I want?\n\nA simple one: spending dinners together—as often as we can, as a whole family.\n\nSitting down, talking about our days, spending time together."
-      // answer: {
-      //   type: "video",
-      //   content: "/videos/future_5.mov",
-      // },
+      // answer: 
+      // "It's funny, I think this is a story that I haven't told Sylvia, yet. But I also think it explains why I choose to wait for her, hungry, as she squeezes in hobbies and gym sessions after an already late work day.\n\nGrowing up, I was always slightly annoyed because we would eat dinner super late—like 8:00 or 8:30 PM.\n\nI always thought it was because things were just running late, or that dinner was an afterthought.\n\nBut when I asked my mom about it later, she gave me a simple answer:\n\n``We eat late because your dad works far away, and I want to make sure that there's food ready for him when he gets home. It's important to me that we eat together as a family.``\n\nThat always stuck with me.\n\nSo, the tradition I want?\n\nA simple one: spending dinners together—as often as we can, as a whole family.\n\nSitting down, talking about our days, spending time together."
+      answer: {
+        type: "video",
+        content: "/videos/future_5.mov",
+      },
     },
     600: {
       question: "If he planned a surprise date night for you, what would it involve?",
