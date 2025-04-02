@@ -104,7 +104,7 @@ export default function FloatingImages({ background = false, showFloatingHeads =
         imageIndex: 4, // Second head image
       }))
 
-    const croissants = Array(5)
+    const croissants = Array(8)
       .fill(0)
       .map((_, i) => ({
         id: i + 5, // Start IDs after both sets of heads
@@ -193,7 +193,7 @@ export default function FloatingImages({ background = false, showFloatingHeads =
               alt="Floating head"
               width={110}
               height={110}
-              className="w-full h-full object-contain"
+              className="w-full h-full object-contain md:scale-125 lg:scale-150"
             />
           </div>
         ))}
@@ -217,7 +217,7 @@ export default function FloatingImages({ background = false, showFloatingHeads =
               alt="Floating head"
               width={100}
               height={100}
-              className="w-full h-full object-contain"
+              className="w-full h-full object-contain md:scale-125 lg:scale-150"
             />
           </div>
         ))}
@@ -239,7 +239,7 @@ export default function FloatingImages({ background = false, showFloatingHeads =
               alt="Floating head"
               width={100}
               height={100}
-              className="w-full h-full object-contain"
+              className="w-full h-full object-contain md:scale-125 lg:scale-150"
             />
           </div>
         ))}
@@ -261,7 +261,7 @@ export default function FloatingImages({ background = false, showFloatingHeads =
               alt="Floating head"
               width={100}
               height={100}
-              className="w-full h-full object-contain"
+              className="w-full h-full object-contain md:scale-125 lg:scale-150"
             />
           </div>
         ))}
@@ -284,13 +284,13 @@ export default function FloatingImages({ background = false, showFloatingHeads =
               alt="Floating head"
               width={100}
               height={100}
-              className="w-full h-full object-contain"
+              className="w-full h-full object-contain md:scale-125 lg:scale-150"
             />
           </div>
         ))}
 
       {/* Render floating croissants */}
-      {Array(5)
+      {Array(8)
         .fill(0)
         .map((_, id) => (
           <div
@@ -308,7 +308,7 @@ export default function FloatingImages({ background = false, showFloatingHeads =
               alt="Floating croissant"
               width={80}
               height={80}
-              className="w-full h-full object-contain"
+              className="w-full h-full object-contain md:scale-125 lg:scale-150"
             />
           </div>
         ))}
