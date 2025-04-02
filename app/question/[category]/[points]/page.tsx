@@ -303,7 +303,7 @@ export default function QuestionPage({ params }: { params: Promise<{ category: s
             )}
           </div>
         )}
-        <Link href="/game">
+        <Link href="/game?state=preserved">
           <Button className="ml-8 mr-8 text-lg px-8 py-6 bg-sunset-lavender text-sunset-charcoal hover:bg-sunset-yellow">
             Return to Board
           </Button>
