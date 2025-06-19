@@ -18,7 +18,7 @@ export default function QuestionClient({ params, questions }: QuestionClientProp
   const [retryCount, setRetryCount] = useState(0)
   const maxRetries = 3
   const { category, points } = use(params)
-  const decodedCategory = decodeURIComponent(category)
+  const decodedCategory = decodeURIComponent(decodeURIComponent(category))
   const questionKey = `${decodedCategory}-${points}`
   const videoRef = useRef<HTMLVideoElement>(null)
 
