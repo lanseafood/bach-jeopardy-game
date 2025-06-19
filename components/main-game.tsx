@@ -7,8 +7,8 @@ import { Button } from "@/components/ui/button"
 import FloatingImages from "@/components/floating-images"
 import { useSearchParams } from "next/navigation"
 
-const categories = ["⏳ THE PAST", "🎁 THE PRESENT", "💫 THE FUTURE"]
-const pointValues = [100, 200, 300, 400, 500, 600, 700, 800]
+const categories = ["The Firsts", "Dates", "The Love Birds", "The Future"]
+const pointValues = [100, 200, 300, 400, 500, 600, 700]
 
 
 export default function JeopardyBoard() {
@@ -68,7 +68,7 @@ export default function JeopardyBoard() {
           <div className="w-[100px]"></div> {/* Spacer for alignment */}
         </div>
         <div className="px-6 flex-1">
-          <div className="grid grid-cols-3 gap-4 md:gap-6 lg:gap-8 w-full h-full">
+          <div className="grid grid-cols-4 gap-4 md:gap-6 lg:gap-8 w-full h-full">
             {categories.map((category) => (
               <div key={category} className="text-center flex flex-col h-full">
                 <h2 className="text-2xl md:text-3xl lg:text-4xl font-mouse font-semibold mb-4 md:mb-6 text-[#7C6E8D] bg-white/30 py-2 px-4 rounded-lg shadow-sm">{category}</h2>
