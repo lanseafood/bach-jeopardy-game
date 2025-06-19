@@ -84,11 +84,11 @@ export default function JeopardyBoard() {
                               digit === '0' ? (
                                 <Image
                                   key={index}
-                                  src="/croissant.png"
+                                  src="/corgi.png"
                                   alt="0"
-                                  width={16}
-                                  height={16}
-                                  className="object-contain animate-bounce-subtle md:w-5 md:h-5 lg:w-6 lg:h-6"
+                                  width={20}
+                                  height={20}
+                                  className="object-contain animate-bounce-subtle md:w-6 md:h-6 lg:w-8 lg:h-8"
                                   priority
                                 />
                               ) : (

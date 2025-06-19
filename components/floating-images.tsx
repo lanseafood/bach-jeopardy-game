@@ -5,7 +5,7 @@ import Image from "next/image"
 
 interface FloatingItem {
   id: number
-  type: "head" | "croissant"
+  type: "head" | "corgi"
   x: number
   y: number
   vx: number
@@ -104,11 +104,11 @@ export default function FloatingImages({ background = false, showFloatingHeads =
         imageIndex: 4, // Second head image
       }))
 
-    const croissants = Array(8)
+    const corgis = Array(8)
       .fill(0)
       .map((_, i) => ({
         id: i + 5, // Start IDs after both sets of heads
-        type: "croissant" as const,
+        type: "corgi" as const,
         x: Math.random() * (window.innerWidth - 80),
         y: Math.random() * (window.innerHeight - 80),
         vx: (Math.random() - 0.5) * 2,
@@ -119,7 +119,7 @@ export default function FloatingImages({ background = false, showFloatingHeads =
       }))
 
     // Combine all floating items
-    itemsRef.current = [...heads1, ...heads2, ...heads3, ...heads4, ...heads5, ...croissants]
+    itemsRef.current = [...heads1, ...heads2, ...heads3, ...heads4, ...heads5, ...corgis]
 
     // Animation function
     const animate = (timestamp: number) => {
@@ -289,13 +289,13 @@ export default function FloatingImages({ background = false, showFloatingHeads =
           </div>
         ))}
 
-      {/* Render floating croissants */}
+      {/* Render floating corgis */}
       {Array(8)
         .fill(0)
         .map((_, id) => (
           <div
-            key={`croissant-${id}`}
-            id={`floating-croissant-${id + 5}`}
+            key={`corgi-${id}`}
+            id={`floating-corgi-${id + 5}`}
             className="absolute"
             style={{
               width: "80px",
@@ -304,8 +304,8 @@ export default function FloatingImages({ background = false, showFloatingHeads =
             }}
           >
             <Image
-              src="/croissant.png"
-              alt="Floating croissant"
+              src="/corgi.png"
+              alt="Floating corgi"
               width={80}
               height={80}
               className="w-full h-full object-contain md:scale-125 lg:scale-150"
