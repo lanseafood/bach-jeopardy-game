@@ -20,7 +20,7 @@ module.exports = {
       fontFamily: {
           mouse: ['"Mouse Memoirs"', 'sans-serif'],  // Adding the mouse font
           waltograph: ['"Waltograph"', 'cursive'], // Add Waltograph font
-          classyvogue: ['"ClassyVogue"', 'sans-serif'], // Add Waltograph font
+          classyvogue: ['"ClassyVogue"', 'sans-serif'], // Add Classy Vogue font
         },
       colors: {
         // Updated color palette
@@ -134,6 +134,22 @@ module.exports = {
             opacity: "0",
             filter: "brightness(0.8)"
           }
+        },
+        "float": {
+          "0%": { 
+            transform: "translateY(-10vh) translateX(0px) rotate(0deg)",
+            opacity: "0"
+          },
+          "10%": { 
+            opacity: "1"
+          },
+          "90%": { 
+            opacity: "1"
+          },
+          "100%": { 
+            transform: "translateY(110vh) translateX(100px) rotate(360deg)",
+            opacity: "0"
+          }
         }
       },
       animation: {
@@ -144,7 +160,8 @@ module.exports = {
         "bounce-subtle": "bounce-subtle 2s infinite",
         "shooting-star": "shooting-star 1s ease-out forwards",
         "twinkle": "twinkle 3s ease-in-out infinite",
-        "firework": "firework 3s ease-out forwards"
+        "firework": "firework 3s ease-out forwards",
+        "float": "float 20s linear infinite"
       },
     },
   },

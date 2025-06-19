@@ -83,7 +83,7 @@ export default function JeopardyBoard() {
                       className="block mb-2"
                     >
                       {isAnswered ? (
-                        <div className="w-full h-8 md:h-10 lg:h-12 flex items-center justify-center bg-sunset-cream rounded-md border-2 border-[#7C6E8D] shadow-sm transition-all duration-500 animate-fade-in-scale">
+                        <div className="w-full h-8 md:h-10 lg:h-12 flex items-center justify-center bg-[#FFEAF0] rounded-md border-2 border-[#7C6E8D] shadow-sm transition-all duration-500 animate-fade-in-scale">
                           <div className="flex items-center gap-1">
                             {points.toString().split('').map((digit, index) => (
                               digit === '0' ? (

@@ -7,6 +7,7 @@ import FloatingImages from "@/components/floating-images"
 import ShootingStar from "@/components/shooting-star"
 import StaticTwinkles from "@/components/static-twinkles"
 import Fireworks from "@/components/fireworks"
+import CherryBlossoms from "@/components/cherry-blossoms"
 import { useSearchParams } from "next/navigation"
 
 export default function LandingPage() {
@@ -19,6 +20,7 @@ export default function LandingPage() {
       <FloatingImages showFloatingHeads={false} />
       <StaticTwinkles />
       <Fireworks />
+      <CherryBlossoms />
       
       <div className="text-center z-10 relative">
         <ShootingStar />
