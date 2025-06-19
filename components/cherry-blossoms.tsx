@@ -11,31 +11,22 @@ interface CherryBlossom {
   delay: number
   duration: number
   opacity: number
-  startTime: number
 }
 
 export default function CherryBlossoms() {
   const [blossoms, setBlossoms] = useState<CherryBlossom[]>([])
-  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  useEffect(() => {
-    if (!mounted) return
-
     // Create initial cherry blossoms
-    const initialBlossoms: CherryBlossom[] = Array.from({ length: 15 }, (_, i) => ({
+    const initialBlossoms: CherryBlossom[] = Array.from({ length: 25 }, (_, i) => ({
       id: i,
       x: Math.random() * 100, // Random horizontal position (0-100%)
       y: Math.random() * 100, // Random vertical position (0-100%)
       size: Math.random() * 15 + 8, // Random size between 8-23px
       rotation: Math.random() * 360, // Random rotation
-      delay: Math.random() * 5, // Random delay for staggered animation
-      duration: Math.random() * 15 + 10, // Random duration between 10-25s
+      delay: Math.random() * 10, // Random delay for staggered animation
+      duration: Math.random() * 20 + 15, // Random duration between 15-35s
       opacity: Math.random() * 0.6 + 0.4, // Random opacity between 0.4-1.0
-      startTime: Date.now(),
     }))
 
     setBlossoms(initialBlossoms)
@@ -46,46 +37,26 @@ export default function CherryBlossoms() {
         const newBlossom: CherryBlossom = {
           id: Date.now() + Math.random(),
           x: Math.random() * 100,
-          y: -5, // Start above the viewport
+          y: -10, // Start above the viewport
           size: Math.random() * 15 + 8,
           rotation: Math.random() * 360,
           delay: 0,
-          duration: Math.random() * 15 + 10,
+          duration: Math.random() * 20 + 15,
           opacity: Math.random() * 0.6 + 0.4,
-          startTime: Date.now(),
         }
-        return [...prev.slice(-20), newBlossom] // Keep max 20 petals
+        return [...prev.slice(-30), newBlossom] // Keep max 30 petals
       })
-    }, 1500) // Add new petal every 1.5 seconds
+    }, 2000) // Add new petal every 2 seconds
 
-    // Cleanup old blossoms periodically
-    const cleanupInterval = setInterval(() => {
-      setBlossoms(prev => {
-        const now = Date.now()
-        return prev.filter(blossom => {
-          const elapsed = now - blossom.startTime
-          return elapsed < (blossom.duration * 1000) + 5000 // Keep blossoms for duration + 5 seconds buffer
-        })
-      })
-    }, 5000) // Clean up every 5 seconds
-
-    return () => {
-      clearInterval(interval)
-      clearInterval(cleanupInterval)
-    }
-  }, [mounted])
-
-  // Don't render anything until mounted to prevent hydration mismatch
-  if (!mounted) {
-    return null
-  }
+    return () => clearInterval(interval)
+  }, [])
 
   return (
     <div className="fixed inset-0 pointer-events-none z-20 overflow-hidden">
       {blossoms.map((blossom) => (
         <div
           key={blossom.id}
-          className="absolute"
+          className="absolute animate-float"
           style={{
             left: `${blossom.x}%`,
             top: `${blossom.y}%`,
@@ -93,7 +64,8 @@ export default function CherryBlossoms() {
             height: `${blossom.size * 1.5}px`, // Make petals slightly taller than wide
             transform: `rotate(${blossom.rotation}deg)`,
             opacity: blossom.opacity,
-            animation: `float ${blossom.duration}s linear ${blossom.delay}s infinite`,
+            animationDelay: `${blossom.delay}s`,
+            animationDuration: `${blossom.duration}s`,
           }}
         >
           {/* Single cherry blossom petal */}

@@ -7,18 +7,18 @@ import { Button } from "@/components/ui/button"
 import FloatingImages from "@/components/floating-images"
 import { useSearchParams } from "next/navigation"
 
-const categories = ["The Firsts", "Dates", "The Love Birds", "The Future"]
+const categories = ["The Firsts 🥇", "Dates 💑", "The Love Birds 🕊️", "The Future 🔮"]
 const pointValues = [100, 200, 300, 400, 500, 600, 700]
 
 
 export default function JeopardyBoard() {
   const [showAnswers, setShowAnswers] = useState<Set<string>>(new Set())
-  const [isClient, setIsClient] = useState(false)
+  const [isHydrated, setIsHydrated] = useState(false)
   const searchParams = useSearchParams()
 
-  // Set isClient to true once component mounts
+  // Mark as hydrated after first render
   useEffect(() => {
-    setIsClient(true)
+    setIsHydrated(true)
   }, [])
 
   // Load answered questions from localStorage on component mount
@@ -45,11 +45,6 @@ export default function JeopardyBoard() {
     }
   }, [searchParams])
 
-  // Only render client-side content after hydration
-  if (!isClient) {
-    return <div className="min-h-screen bg-sunset-pink"></div>
-  }
-
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#FFD1DC] to-[#FFE5B4] text-sunset-charcoal">
       {/* Floating Images */}
@@ -71,10 +66,10 @@ export default function JeopardyBoard() {
           <div className="grid grid-cols-4 gap-4 md:gap-6 lg:gap-8 w-full h-full">
             {categories.map((category) => (
               <div key={category} className="text-center flex flex-col h-full">
-                <h2 className="text-2xl md:text-3xl lg:text-4xl font-mouse font-semibold mb-4 md:mb-6 text-[#7C6E8D] bg-white/30 py-2 px-4 rounded-lg shadow-sm">{category}</h2>
+                <h2 className="text-lg md:text-2xl lg:text-2xl font-mogilte font-semibold mb-4 md:mb-6 text-[#7C6E8D] bg-white/30 py-2 px-4 rounded-lg shadow-sm">{category}</h2>
                 {pointValues.map((points) => {
                   const questionKey = `${category}-${points}`
-                  const isAnswered = showAnswers.has(questionKey)
+                  const isAnswered = isHydrated && showAnswers.has(questionKey)
 
                   return (
                     <Link

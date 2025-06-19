@@ -21,6 +21,7 @@ module.exports = {
           mouse: ['"Mouse Memoirs"', 'sans-serif'],  // Adding the mouse font
           waltograph: ['"Waltograph"', 'cursive'], // Add Waltograph font
           classyvogue: ['"ClassyVogue"', 'sans-serif'], // Add Classy Vogue font
+          mogilte: ['"Mogilte"', 'sans-serif'], // Add Mogilte font
         },
       colors: {
         // Updated color palette

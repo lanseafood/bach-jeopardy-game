@@ -1,7 +1,7 @@
 import QuestionClient from './question-client'
 
 const questions: Record<string, Record<number, { question: string; answer: string | { type: string; content: string } }>> = {
-  "The Firsts": {
+  "The Firsts 🥇": {
     100: {
       question: "Where did you go on the first date?",
       answer: {
@@ -52,7 +52,7 @@ const questions: Record<string, Record<number, { question: string; answer: strin
       },
     },
   },
-  "Dates": {
+  "Dates 💑": {
     100: {
       question: "What has been the most extravagant date so far?",
       answer: {
@@ -103,7 +103,7 @@ const questions: Record<string, Record<number, { question: string; answer: strin
       },
     },
   },
-  "The Love Birds": {
+  "The Love Birds 🕊️": {
     100: {
       question: "What is Lewin's favorite quality about you?",
       answer: {
@@ -154,7 +154,7 @@ const questions: Record<string, Record<number, { question: string; answer: strin
       },
     },
   },
-  "The Future": {
+  "The Future 🔮": {
     100: {
       question: "What's one dream or goal you're excited to pursue together as a couple?",
       answer: {
