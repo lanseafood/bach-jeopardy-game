@@ -20,6 +20,7 @@ module.exports = {
       fontFamily: {
           mouse: ['"Mouse Memoirs"', 'sans-serif'],  // Adding the mouse font
           waltograph: ['"Waltograph"', 'cursive'], // Add Waltograph font
+          classyvogue: ['"ClassyVogue"', 'sans-serif'], // Add Waltograph font
         },
       colors: {
         // Updated color palette

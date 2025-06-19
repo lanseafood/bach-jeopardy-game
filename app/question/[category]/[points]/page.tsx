@@ -216,8 +216,8 @@ export default function QuestionPage({ params }: { params: Promise<{ category: s
   if (!questionData) {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen bg-sunset-pink p-4">
-        <div className="bg-white rounded-lg shadow-lg p-8 max-w-4xl w-full text-center border-2 border-sunset-blue">
-          <h1 className="text-3xl font-bold mb-8 text-sunset-blue">Question Not Found</h1>
+        <div className="bg-white rounded-lg shadow-lg p-8 max-w-4xl w-full text-center border-2 border-[#7C6E8D]">
+          <h1 className="text-3xl font-bold mb-8 text-[#7C6E8D]">Question Not Found</h1>
           <p className="text-xl mb-8 text-sunset-charcoal">Sorry, we couldn't find this question.</p>
           <Link href="/game">
             <Button className="ml-8 mr-8 text-lg px-8 py-6 bg-sunset-lavender text-sunset-charcoal hover:bg-sunset-yellow">
@@ -242,10 +242,10 @@ export default function QuestionPage({ params }: { params: Promise<{ category: s
   }
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-sunset-pink to-[#FF6F91] p-4 relative">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-[#FFD1DC] to-[#FFE5B4] p-4 relative">
       <FloatingImages background={true} />
-      <div className="bg-white rounded-lg shadow-lg p-8 max-w-4xl w-full text-center border-2 border-sunset-blue relative z-10">
-        <h1 className="text-3xl font-bold mb-8 text-sunset-blue">
+      <div className="bg-white rounded-lg shadow-lg p-8 max-w-4xl w-full text-center border-2 border-[#7C6E8D] relative z-10">
+        <h1 className="text-3xl font-bold mb-8 text-[#7C6E8D]">
           {decodedCategory} - Question {points}
         </h1>
         <div className="text-2xl mb-8 text-sunset-charcoal">{questionData.question}</div>
@@ -258,7 +258,7 @@ export default function QuestionPage({ params }: { params: Promise<{ category: s
           </Button>
         )}
         {showAnswer && (
-          <div className="mb-12 bg-sunset-cream p-6 rounded-lg border-2 border-sunset-blue">
+          <div className="mb-12 bg-sunset-cream p-6 rounded-lg border-2 border-[#7C6E8D]">
             {typeof questionData.answer === "string" ? (
               <div className="text-xl text-left whitespace-pre-line text-sunset-charcoal">{questionData.answer}</div>
             ) : (
@@ -266,7 +266,7 @@ export default function QuestionPage({ params }: { params: Promise<{ category: s
                 <div className="relative">
                   {isVideoLoading && (
                     <div className="absolute inset-0 flex items-center justify-center bg-sunset-cream/80">
-                      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-sunset-blue"></div>
+                      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#7C6E8D]"></div>
                     </div>
                   )}
                   {videoError && retryCount < maxRetries && (
@@ -290,7 +290,7 @@ export default function QuestionPage({ params }: { params: Promise<{ category: s
                     ref={videoRef}
                     controls 
                     autoPlay 
-                    className="w-full max-w-2xl border-2 border-sunset-blue rounded-lg"
+                    className="w-full max-w-2xl border-2 border-[#7C6E8D] rounded-lg"
                     onLoadedData={handleVideoLoad}
                     onError={handleVideoError}
                     preload="metadata"
@@ -313,3 +313,20 @@ export default function QuestionPage({ params }: { params: Promise<{ category: s
   )
 }
 
+export function generateStaticParams() {
+  const categories = ["⏳ THE PAST", "🎁 THE PRESENT", "💫 THE FUTURE"]
+  const pointValues = [100, 200, 300, 400, 500, 600, 700, 800]
+
+  const params = []
+
+  for (const category of categories) {
+    for (const points of pointValues) {
+      params.push({
+        category: encodeURIComponent(category),
+        points: points.toString(),
+      })
+    }
+  }
+
+  return params
+}
