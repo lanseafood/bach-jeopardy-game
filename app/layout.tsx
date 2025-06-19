@@ -9,9 +9,8 @@ const mouseMemoirs = Mouse_Memoirs({
 })
 
 export const metadata: Metadata = {
-  title: 'v0 App',
-  description: 'Created with v0',
-  generator: 'v0.dev',
+  title: 'bachelorette jeopardy',
+  description: 'Created by Lanssie Ma for all her friends bachelorette parties',
 }
 
 export default function RootLayout({
