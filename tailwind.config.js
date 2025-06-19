@@ -31,7 +31,7 @@ module.exports = {
           blue: "#4C9ED9", // A refreshing contrast
           lavender: "#A497C5", // Adds depth with a muted cool tone
           charcoal: "#3A3A3A", // Neutral, grounding for text or borders
-          cream: "#F5E1A4", // Soft neutral for backgrounds or sections
+          cream: "#FFDBE7", // Soft neutral for backgrounds or sections
 
           // Mapping to functional names for easier use in components
           background: "#FFBA8B", // Coral Pink as background
