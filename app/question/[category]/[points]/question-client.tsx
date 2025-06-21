@@ -114,7 +114,7 @@ export default function QuestionClient({ params, questions }: QuestionClientProp
         {!showAnswer && (
           <Button
             onClick={() => setShowAnswer(true)}
-            className="ml-8 mr-8 mb-12 text-lg px-8 py-6 bg-sunset-cream text-sunset-charcoal hover:bg-sunset-yellow"
+            className="ml-8 mr-8 mb-12 text-lg px-8 py-6 bg-sunset-green text-sunset-cream hover:bg-sunset-yellow"
           >
             Show Answer
           </Button>

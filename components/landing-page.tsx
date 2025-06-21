@@ -4,10 +4,8 @@ import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import FloatingImages from "@/components/floating-images"
-import ShootingStar from "@/components/shooting-star"
 import StaticTwinkles from "@/components/static-twinkles"
 import Fireworks from "@/components/fireworks"
-import CherryBlossoms from "@/components/cherry-blossoms"
 import { FallingGreenLeaves } from "@/components/falling-green-leaves"
 import { useSearchParams } from "next/navigation"
 
@@ -17,16 +15,13 @@ export default function LandingPage() {
   const gameLink = state === 'preserved' ? '/game?state=preserved' : '/game'
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-sunset-orange via-sunset-cream to-sunset-orange text-sunset-charcoal flex flex-col items-center justify-center">
+    <div className="min-h-screen bg-gradient-to-b from-sunset-orange via-sunset-cream to-sunset-green text-sunset-charcoal flex flex-col items-center justify-center">
       <FloatingImages showFloatingHeads={false} />
       <StaticTwinkles />
       <Fireworks />
       <FallingGreenLeaves />
-      {/* <CherryBlossoms /> */}
-
       
       <div className="text-center z-10 relative">
-        {/* <ShootingStar /> */}
         <div className="absolute inset-0 flex items-center justify-center -z-10 -mt-[20%]">
           <div className="relative">
             <div className="absolute inset-0 bg-gradient-radial from-transparent via-transparent to-black/30 rounded-full"></div>

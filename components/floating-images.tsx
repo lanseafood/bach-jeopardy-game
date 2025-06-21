@@ -34,13 +34,13 @@ export default function FloatingImages({ background = false, showFloatingHeads =
       .map((_, i) => ({
         id: i,
         type: "head" as const,
-        x: Math.random() * (window.innerWidth - 110),
-        y: Math.random() * (window.innerHeight - 110),
+        x: Math.random() * (window.innerWidth - 85),
+        y: Math.random() * (window.innerHeight - 85),
         vx: (Math.random() - 0.5) * 2,
         vy: (Math.random() - 0.5) * 2,
         rotation: Math.random() * 360,
         rotationSpeed: (Math.random() - 0.5) * 2,
-        size: 110,
+        size: 85,
         imageIndex: 0, // First head image
       }))
 
@@ -49,13 +49,13 @@ export default function FloatingImages({ background = false, showFloatingHeads =
       .map((_, i) => ({
         id: i + 1, // Start IDs after the first set of heads
         type: "head" as const,
-        x: Math.random() * (window.innerWidth - 100),
-        y: Math.random() * (window.innerHeight - 100),
+        x: Math.random() * (window.innerWidth - 75),
+        y: Math.random() * (window.innerHeight - 75),
         vx: (Math.random() - 0.5) * 2,
         vy: (Math.random() - 0.5) * 2,
         rotation: Math.random() * 360,
         rotationSpeed: (Math.random() - 0.5) * 2,
-        size: 100,
+        size: 75,
         imageIndex: 1, // Second head image
       }))
 
@@ -64,13 +64,13 @@ export default function FloatingImages({ background = false, showFloatingHeads =
       .map((_, i) => ({
         id: i + 2, // Start IDs after both sets of heads
         type: "head" as const,
-        x: Math.random() * (window.innerWidth - 90),
-        y: Math.random() * (window.innerHeight - 90),
+        x: Math.random() * (window.innerWidth - 65),
+        y: Math.random() * (window.innerHeight - 65),
         vx: (Math.random() - 0.5) * 2,
         vy: (Math.random() - 0.5) * 2,
         rotation: Math.random() * 360,
         rotationSpeed: (Math.random() - 0.5) * 2,
-        size: 100,              
+        size: 65,              
         imageIndex: 2, // Second head image
       }))
 
@@ -79,13 +79,13 @@ export default function FloatingImages({ background = false, showFloatingHeads =
       .map((_, i) => ({
         id: i + 3, // Start IDs after both sets of heads
         type: "head" as const,
-        x: Math.random() * (window.innerWidth - 90),
-        y: Math.random() * (window.innerHeight - 90),
+        x: Math.random() * (window.innerWidth - 65),
+        y: Math.random() * (window.innerHeight - 65),
         vx: (Math.random() - 0.5) * 2,
         vy: (Math.random() - 0.5) * 2,
         rotation: Math.random() * 360,
         rotationSpeed: (Math.random() - 0.5) * 2,
-        size: 100,
+        size: 65,
         imageIndex: 3, // Second head image
       }))
 
@@ -94,13 +94,13 @@ export default function FloatingImages({ background = false, showFloatingHeads =
       .map((_, i) => ({
         id: i + 4, // Start IDs after both sets of heads
         type: "head" as const,
-        x: Math.random() * (window.innerWidth - 100),
-        y: Math.random() * (window.innerHeight - 100),
+        x: Math.random() * (window.innerWidth - 75),
+        y: Math.random() * (window.innerHeight - 75),
         vx: (Math.random() - 0.5) * 2,
         vy: (Math.random() - 0.5) * 2,
         rotation: Math.random() * 360,
         rotationSpeed: (Math.random() - 0.5) * 2,
-        size: 100,
+        size: 75,
         imageIndex: 4, // Second head image
       }))
 
@@ -109,13 +109,13 @@ export default function FloatingImages({ background = false, showFloatingHeads =
       .map((_, i) => ({
         id: i + 5, // Start IDs after both sets of heads
         type: "corgi" as const,
-        x: Math.random() * (window.innerWidth - 80),
-        y: Math.random() * (window.innerHeight - 80),
+        x: Math.random() * (window.innerWidth - 65),
+        y: Math.random() * (window.innerHeight - 65),
         vx: (Math.random() - 0.5) * 2,
         vy: (Math.random() - 0.5) * 2,
         rotation: Math.random() * 360,
         rotationSpeed: (Math.random() - 0.5) * 4, // More rotation
-        size: 80, // Smaller size
+        size: 65, // Smaller size
       }))
 
     // Combine all floating items
@@ -183,16 +183,16 @@ export default function FloatingImages({ background = false, showFloatingHeads =
             id={`floating-head-${id}`}
             className="absolute"
             style={{
-              width: "110px",
-              height: "110px",
+              width: "85px",
+              height: "85px",
               willChange: "transform",
             }}
           >
             <Image
               src="/fh1.png"
               alt="Floating head"
-              width={110}
-              height={110}
+              width={85}
+              height={85}
               className="w-full h-full object-contain md:scale-125 lg:scale-150"
             />
           </div>
@@ -207,16 +207,16 @@ export default function FloatingImages({ background = false, showFloatingHeads =
             id={`floating-head-${id + 1}`}
             className="absolute"
             style={{
-              width: "100px",
-              height: "100px",
+              width: "75px",
+              height: "75px",
               willChange: "transform",
             }}
           >
             <Image
               src="/fh2.png"
               alt="Floating head"
-              width={100}
-              height={100}
+              width={75}
+              height={75}
               className="w-full h-full object-contain md:scale-125 lg:scale-150"
             />
           </div>
@@ -229,16 +229,16 @@ export default function FloatingImages({ background = false, showFloatingHeads =
             id={`floating-head-${id + 2}`}
             className="absolute"
             style={{
-              width: "90px",
-              height: "90px",
+              width: "65px",
+              height: "65px",
               willChange: "transform",
             }}
           >
             <Image
               src="/fh3.png"
               alt="Floating head"
-              width={100}
-              height={100}
+              width={65}
+              height={65}
               className="w-full h-full object-contain md:scale-125 lg:scale-150"
             />
           </div>
@@ -251,16 +251,16 @@ export default function FloatingImages({ background = false, showFloatingHeads =
             id={`floating-head-${id + 3}`}
             className="absolute"
             style={{
-              width: "90px",
-              height: "90px",
+              width: "65px",
+              height: "65px",
               willChange: "transform",
             }}
           >
             <Image
               src="/fh4.png"
               alt="Floating head"
-              width={100}
-              height={100}
+              width={65}
+              height={65}
               className="w-full h-full object-contain md:scale-125 lg:scale-150"
             />
           </div>
@@ -274,16 +274,16 @@ export default function FloatingImages({ background = false, showFloatingHeads =
             id={`floating-head-${id + 4}`}
             className="absolute"
             style={{
-              width: "100px",
-              height: "100px",
+              width: "75px",
+              height: "75px",
               willChange: "transform",
             }}
           >
             <Image
               src="/fh5.png"
               alt="Floating head"
-              width={100}
-              height={100}
+              width={75}
+              height={75}
               className="w-full h-full object-contain md:scale-125 lg:scale-150"
             />
           </div>
@@ -298,16 +298,16 @@ export default function FloatingImages({ background = false, showFloatingHeads =
             id={`floating-corgi-${id + 5}`}
             className="absolute"
             style={{
-              width: "80px",
-              height: "80px",
+              width: "65px",
+              height: "65px",
               willChange: "transform",
             }}
           >
             <Image
               src="/corgi.png"
               alt="Floating corgi"
-              width={80}
-              height={80}
+              width={65}
+              height={65}
               className="w-full h-full object-contain md:scale-125 lg:scale-150"
             />
           </div>
