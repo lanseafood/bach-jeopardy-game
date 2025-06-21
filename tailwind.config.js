@@ -33,7 +33,9 @@ module.exports = {
           lavender: "#A497C5", // Adds depth with a muted cool tone
           charcoal: "#3A3A3A", // Neutral, grounding for text or borders
           cream: "#FFDBE7", // Soft neutral for backgrounds or sections
-
+          green: "##6B8765",
+          tan: "#896C43",
+        
           // Mapping to functional names for easier use in components
           background: "#FFBA8B", // Coral Pink as background
           text: "#3A3A3A", // Charcoal Gray for text

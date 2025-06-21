@@ -28,7 +28,7 @@ export default function LandingPage() {
           <div className="relative">
             <div className="absolute inset-0 bg-gradient-radial from-transparent via-transparent to-black/30 rounded-full"></div>
             <Image
-              src="/eiffletower.png"
+              src="/vancouver.png"
               alt="Eiffle Tower"
               width={1000}
               height={800}
@@ -39,7 +39,7 @@ export default function LandingPage() {
           </div>
         </div>
         <h1 className="text-[7rem] font-classyvogue text-[#F8F2FF] mt-[100px] drop-shadow-[0_5px_5px_rgba(0,0,0,0.2)] ">
-          Ayawin Jeopardy
+          JeaJon Jeopardy
         </h1>
         <Link href={gameLink}>
           <Button 

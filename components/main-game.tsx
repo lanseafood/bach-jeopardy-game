@@ -7,8 +7,8 @@ import { Button } from "@/components/ui/button"
 import FloatingImages from "@/components/floating-images"
 import { useSearchParams } from "next/navigation"
 
-const categories = ["The Firsts 🥇", "Dates 💑", "The Love Birds 🕊️", "The Future 🔮"]
-const pointValues = [100, 200, 300, 400, 500, 600, 700]
+const categories = ["Jeannie-ology 🧪", "The Pits 🧻", "Meet-Cute Moments 💞", "Future Forecast 📈"]
+const pointValues = [100, 200, 300, 400, 500]
 
 
 export default function JeopardyBoard() {
@@ -59,7 +59,7 @@ export default function JeopardyBoard() {
               Back to Home
             </Button>
           </Link>
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-classyvogue text-center text-sunset-lavender pt-4">Ayawin Jeopardy</h1>
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-classyvogue text-center text-sunset-lavender pt-4">JeaJon Jeopardy</h1>
           <div className="w-[100px]"></div> {/* Spacer for alignment */}
         </div>
         <div className="px-6 flex-1">
