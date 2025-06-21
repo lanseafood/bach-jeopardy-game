@@ -46,7 +46,7 @@ export default function JeopardyBoard() {
   }, [searchParams])
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#FFD1DC] to-[#FFE5B4] text-sunset-charcoal">
+    <div className="min-h-screen bg-gradient-to-b from-sunset-cream to-sunset-orange text-sunset-charcoal">
       {/* Floating Images */}
       <FloatingImages />
 
@@ -54,19 +54,19 @@ export default function JeopardyBoard() {
         <div className="flex justify-between items-center mb-8 mt-12 px-6">
           <Link href="/?state=preserved">
             <Button 
-              className="bg-sunset-lavender text-sunset-charcoal hover:bg-sunset-yellow"
+              className="bg-sunset-cream text-sunset-charcoal hover:bg-sunset-yellow"
             >
               Back to Home
             </Button>
           </Link>
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-classyvogue text-center text-sunset-lavender pt-4">JeaJon Jeopardy</h1>
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-classyvogue text-center text-sunset-green pt-4">JeaJon Jeopardy</h1>
           <div className="w-[100px]"></div> {/* Spacer for alignment */}
         </div>
         <div className="px-6 flex-1">
           <div className="grid grid-cols-4 gap-4 md:gap-6 lg:gap-8 w-full h-full">
             {categories.map((category) => (
               <div key={category} className="text-center flex flex-col h-full">
-                <h2 className="text-lg md:text-2xl lg:text-2xl font-mogilte font-semibold mb-4 md:mb-6 text-[#7C6E8D] bg-white/30 py-2 px-4 rounded-lg shadow-sm">{category}</h2>
+                <h2 className="text-lg md:text-1.2xl lg:text-1.5xl font-mogilte font-semibold mb-4 md:mb-6 text-sunset-darkgreen bg-white/30 py-2 px-4 rounded-lg shadow-sm">{category}</h2>
                 {pointValues.map((points) => {
                   const questionKey = `${category}-${points}`
                   const isAnswered = isHydrated && showAnswers.has(questionKey)
@@ -78,7 +78,7 @@ export default function JeopardyBoard() {
                       className="block mb-2"
                     >
                       {isAnswered ? (
-                        <div className="w-full h-8 md:h-10 lg:h-12 flex items-center justify-center bg-[#FFEAF0] rounded-md border-2 border-[#7C6E8D] shadow-sm transition-all duration-500 animate-fade-in-scale">
+                        <div className="w-full h-8 md:h-10 lg:h-12 flex items-center justify-center bg-sunset-lightcream rounded-md border-2 border-[#7C6E8D] shadow-sm transition-all duration-500 animate-fade-in-scale">
                           <div className="flex items-center gap-1">
                             {points.toString().split('').map((digit, index) => (
                               digit === '0' ? (
@@ -101,7 +101,7 @@ export default function JeopardyBoard() {
                         </div>
                       ) : (
                         <Button
-                          className="w-full h-8 md:h-10 lg:h-12 border-2 border-[#7C6E8D] bg-sunset-lavender text-sunset-charcoal hover:bg-sunset-yellow text-lg md:text-xl lg:text-2xl font-semibold transition-all duration-200 hover:scale-105 hover:shadow-md"
+                          className="w-full h-8 md:h-10 lg:h-12 border-2 border-[#7C6E8D] bg-sunset-cream text-sunset-charcoal hover:bg-sunset-yellow text-lg md:text-xl lg:text-2xl font-semibold transition-all duration-200 hover:scale-105 hover:shadow-md"
                           variant="outline"
                         >
                           {points}

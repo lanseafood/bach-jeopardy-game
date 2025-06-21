@@ -45,10 +45,18 @@ export default function QuestionClient({ params, questions }: QuestionClientProp
         localStorage.setItem("showAnswers", JSON.stringify(showAnswers))
       }
 
-      // Play video if it's a video answer
+      // Play video if it's a video answer with error handling
       const questionData = questions[decodedCategory]?.[Number.parseInt(points)]
       if (questionData && typeof questionData.answer !== "string" && videoRef.current) {
-        videoRef.current.play()
+        const playPromise = videoRef.current.play()
+        if (playPromise !== undefined) {
+          playPromise.catch((error) => {
+            // Ignore play interruption errors when navigating away
+            if (error.name !== 'AbortError') {
+              console.error('Video play error:', error)
+            }
+          })
+        }
       }
     }
   }, [showAnswer, questionKey, decodedCategory, points, questions])
@@ -85,8 +93,18 @@ export default function QuestionClient({ params, questions }: QuestionClientProp
     }
   }
 
+  // Cleanup function to handle video when component unmounts
+  useEffect(() => {
+    return () => {
+      if (videoRef.current) {
+        videoRef.current.pause()
+        videoRef.current.currentTime = 0
+      }
+    }
+  }, [])
+
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-[#FFD1DC] to-[#FFE5B4] p-4 relative">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-sunset-cream to-sunset-green p-4 relative">
       <FloatingImages background={true} />
       <div className="bg-white rounded-lg shadow-lg p-8 max-w-4xl w-full text-center border-2 border-[#7C6E8D] relative z-10">
         <h1 className="text-3xl font-bold mb-8 text-[#7C6E8D]">
@@ -96,7 +114,7 @@ export default function QuestionClient({ params, questions }: QuestionClientProp
         {!showAnswer && (
           <Button
             onClick={() => setShowAnswer(true)}
-            className="ml-8 mr-8 mb-12 text-lg px-8 py-6 bg-[#FF6F91] text-white hover:bg-[#FF8FA3]"
+            className="ml-8 mr-8 mb-12 text-lg px-8 py-6 bg-sunset-cream text-sunset-charcoal hover:bg-sunset-yellow"
           >
             Show Answer
           </Button>
@@ -123,7 +141,7 @@ export default function QuestionClient({ params, questions }: QuestionClientProp
                             setIsVideoLoading(true)
                             setIsVideoReady(false)
                           }}
-                          className="bg-sunset-lavender text-sunset-charcoal hover:bg-sunset-yellow"
+                          className="bg-sunset-cream text-sunset-charcoal hover:bg-sunset-yellow"
                         >
                           Retry
                         </Button>
@@ -148,7 +166,7 @@ export default function QuestionClient({ params, questions }: QuestionClientProp
           </div>
         )}
         <Link href="/game?state=preserved">
-          <Button className="ml-8 mr-8 text-lg px-8 py-6 bg-sunset-lavender text-sunset-charcoal hover:bg-sunset-yellow">
+          <Button className="ml-8 mr-8 text-lg px-8 py-6 bg-sunset-cream text-sunset-charcoal hover:bg-sunset-yellow">
             Return to Board
           </Button>
         </Link>

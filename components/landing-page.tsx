@@ -8,6 +8,7 @@ import ShootingStar from "@/components/shooting-star"
 import StaticTwinkles from "@/components/static-twinkles"
 import Fireworks from "@/components/fireworks"
 import CherryBlossoms from "@/components/cherry-blossoms"
+import { FallingGreenLeaves } from "@/components/falling-green-leaves"
 import { useSearchParams } from "next/navigation"
 
 export default function LandingPage() {
@@ -16,14 +17,16 @@ export default function LandingPage() {
   const gameLink = state === 'preserved' ? '/game?state=preserved' : '/game'
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#FFD1DC] via-[#FFE5B4] to-[#F8F4F9] text-sunset-charcoal flex flex-col items-center justify-center">
+    <div className="min-h-screen bg-gradient-to-b from-sunset-orange via-sunset-cream to-sunset-orange text-sunset-charcoal flex flex-col items-center justify-center">
       <FloatingImages showFloatingHeads={false} />
       <StaticTwinkles />
       <Fireworks />
-      <CherryBlossoms />
+      <FallingGreenLeaves />
+      {/* <CherryBlossoms /> */}
+
       
       <div className="text-center z-10 relative">
-        <ShootingStar />
+        {/* <ShootingStar /> */}
         <div className="absolute inset-0 flex items-center justify-center -z-10 -mt-[20%]">
           <div className="relative">
             <div className="absolute inset-0 bg-gradient-radial from-transparent via-transparent to-black/30 rounded-full"></div>
@@ -43,7 +46,7 @@ export default function LandingPage() {
         </h1>
         <Link href={gameLink}>
           <Button 
-            className="text-2xl px-12 py-6 bg-sunset-lavender text-sunset-charcoal hover:bg-sunset-yellow transition-all duration-300 hover:scale-110 hover:shadow-lg"
+            className="text-2xl px-12 py-6 bg-sunset-cream text-sunset-charcoal hover:bg-sunset-yellow transition-all duration-300 hover:scale-110 hover:shadow-lg"
           >
             Let's Play!
           </Button>

@@ -112,11 +112,6 @@
   }
 }
 
-body {
-  @apply bg-gradient-to-b from-[#FFD1DC] to-[#FFE5B4] !important;
-  min-height: 10vh;
-}
-
 /* Custom button styles for our sunset theme */
 .btn-sunset {
   background-color: #a497c5; /* Lavender Mist */

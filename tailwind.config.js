@@ -26,14 +26,16 @@ module.exports = {
       colors: {
         // Updated color palette
         sunset: {
-          orange: "#FF6F4F", // Warm and inviting
+          orange: "#F8D1A3", // Warm and inviting
           yellow: "#FDB813", // Bright, optimistic
-          pink: "#FFBA8B", // Soft but lively
+          pink: "#FFD1DC", // Soft but lively
           blue: "#4C9ED9", // A refreshing contrast
           lavender: "#A497C5", // Adds depth with a muted cool tone
           charcoal: "#3A3A3A", // Neutral, grounding for text or borders
-          cream: "#FFDBE7", // Soft neutral for backgrounds or sections
-          green: "##6B8765",
+          cream: "#FCEFD8", // Soft neutral for backgrounds or sections
+          lightcream: "#FDF7EB", // Soft neutral for backgrounds or sections
+          green: "#6B8765",
+          darkgreen: "#4F5F1C",
           tan: "#896C43",
         
           // Mapping to functional names for easier use in components
