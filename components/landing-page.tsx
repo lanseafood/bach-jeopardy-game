@@ -15,28 +15,31 @@ export default function LandingPage() {
   const gameLink = state === 'preserved' ? '/game?state=preserved' : '/game'
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-sunset-orange via-sunset-cream to-sunset-green text-sunset-charcoal flex flex-col items-center justify-center">
+    <div className="min-h-screen bg-gradient-to-b from-sunset-orange via-sunset-cream to-sunset-green text-sunset-charcoal flex flex-col items-center justify-center relative">
       <FloatingImages showFloatingHeads={false} />
       <StaticTwinkles />
       <Fireworks />
       <FallingGreenLeaves />
       
-      <div className="text-center z-10 relative">
-        <div className="absolute inset-0 flex items-center justify-center -z-10 -mt-[20%]">
-          <div className="relative">
-            <div className="absolute inset-0 bg-gradient-radial from-transparent via-transparent to-black/30 rounded-full"></div>
-            <Image
-              src="/vancouver.png"
-              alt="Eiffle Tower"
-              width={1000}
-              height={800}
-              className="opacity-100 object-contain"
-              priority
-              unoptimized
-            />
-          </div>
+      {/* Vancouver Image - positioned independently */}
+      <div className="absolute inset-0 flex items-center justify-center z-0">
+        <div className="relative">
+          <div className="absolute inset-0 bg-gradient-radial from-transparent via-transparent to-black/30 rounded-full"></div>
+          <Image
+            src="/vancouver.png"
+            alt="Vancouver"
+            width={850}
+            height={680}
+            className="opacity-100 object-contain"
+            priority
+            unoptimized
+          />
         </div>
-        <h1 className="text-[7rem] font-classyvogue text-[#F8F2FF] mt-[100px] drop-shadow-[0_5px_5px_rgba(0,0,0,0.2)] ">
+      </div>
+
+      {/* Title and Button - positioned independently */}
+      <div className="text-center z-10 relative">
+        <h1 className="text-[6rem] font-classyvogue text-[#F8F2FF] drop-shadow-[0_5px_5px_rgba(0,0,0,0.2)] mb-8">
           JeaJon Jeopardy
         </h1>
         <Link href={gameLink}>
