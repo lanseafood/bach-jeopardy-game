@@ -148,6 +148,20 @@ const questions: Record<string, Record<number, { question: string; answer: strin
         content: "/videos/FUTURE_500.mp4",
       },
     },
+    600: {
+      question: "Who will be the stricter parent (if you want kids)?",
+      answer: {
+        type: "video",
+        content: "/videos/FUTURE_600.mp4",
+      },
+    },
+    700: {
+      question: "What is one thing that Lewin will never want to change about the relationship?",
+      answer: {
+        type: "video",
+        content: "/videos/FUTURE_700.mp4",
+      },
+    },
   },
 }
 
