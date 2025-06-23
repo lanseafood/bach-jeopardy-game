@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, use } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import FloatingImages from "@/components/floating-images"
+import { gameConfig } from "@/lib/game-config"
 
 interface QuestionClientProps {
   params: Promise<{ category: string; points: string }>
@@ -45,10 +46,18 @@ export default function QuestionClient({ params, questions }: QuestionClientProp
         localStorage.setItem("showAnswers", JSON.stringify(showAnswers))
       }
 
-      // Play video if it's a video answer
+      // Play video if it's a video answer with error handling
       const questionData = questions[decodedCategory]?.[Number.parseInt(points)]
       if (questionData && typeof questionData.answer !== "string" && videoRef.current) {
-        videoRef.current.play()
+        const playPromise = videoRef.current.play()
+        if (playPromise !== undefined) {
+          playPromise.catch((error) => {
+            // Ignore play interruption errors when navigating away
+            if (error.name !== 'AbortError') {
+              console.error('Video play error:', error)
+            }
+          })
+        }
       }
     }
   }, [showAnswer, questionKey, decodedCategory, points, questions])
@@ -59,12 +68,12 @@ export default function QuestionClient({ params, questions }: QuestionClientProp
   // If question data is not found, show an error message
   if (!questionData) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-screen bg-sunset-pink p-4">
+      <div className={`flex flex-col items-center justify-center min-h-screen bg-sunset-pink p-4`}>
         <div className="bg-white rounded-lg shadow-lg p-8 max-w-4xl w-full text-center border-2 border-[#7C6E8D]">
-          <h1 className="text-3xl font-bold mb-8 text-[#7C6E8D]">Question Not Found</h1>
-          <p className="text-xl mb-8 text-sunset-charcoal">Sorry, we couldn't find this question.</p>
+          <h1 className={`text-3xl font-bold mb-8 text-[#7C6E8D] ${gameConfig.fonts.title.family}`}>Question Not Found</h1>
+          <p className={`text-xl mb-8 ${gameConfig.colors.questionText} ${gameConfig.fonts.question.family}`}>Sorry, we couldn't find this question.</p>
           <Link href="/game">
-            <Button className="ml-8 mr-8 text-lg px-8 py-6 bg-sunset-lavender text-sunset-charcoal hover:bg-sunset-yellow">
+            <Button className={`ml-8 mr-8 text-lg px-8 py-6 bg-sunset-lavender ${gameConfig.colors.secondaryButton.text} ${gameConfig.colors.secondaryButton.hover} ${gameConfig.fonts.button.family}`}>
               Return to Board
             </Button>
           </Link>
@@ -85,18 +94,28 @@ export default function QuestionClient({ params, questions }: QuestionClientProp
     }
   }
 
+  // Cleanup function to handle video when component unmounts
+  useEffect(() => {
+    return () => {
+      if (videoRef.current) {
+        videoRef.current.pause()
+        videoRef.current.currentTime = 0
+      }
+    }
+  }, [])
+
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-[#FFD1DC] to-[#FFE5B4] p-4 relative">
-      <FloatingImages background={true} />
+    <div className={`flex flex-col items-center justify-center min-h-screen bg-gradient-to-b ${gameConfig.colors.questionPage} p-4 relative`}>
+      <FloatingImages background={true} showFloatingObjects={gameConfig.settings.showFloatingObjects} showFloatingHeads={gameConfig.settings.showFloatingHeads} />
       <div className="bg-white rounded-lg shadow-lg p-8 max-w-4xl w-full text-center border-2 border-[#7C6E8D] relative z-10">
-        <h1 className="text-3xl font-bold mb-8 text-[#7C6E8D]">
+        <h1 className={`text-3xl font-bold mb-8 text-[#7C6E8D] ${gameConfig.fonts.title.family}`}>
           {decodedCategory} - Question {points}
         </h1>
-        <div className="text-2xl mb-8 text-sunset-charcoal">{questionData.question}</div>
+        <div className={`${gameConfig.fonts.question.size} mb-8 ${gameConfig.colors.questionText} ${gameConfig.fonts.question.family}`}>{questionData.question}</div>
         {!showAnswer && (
           <Button
             onClick={() => setShowAnswer(true)}
-            className="ml-8 mr-8 mb-12 text-lg px-8 py-6 bg-[#FF6F91] text-white hover:bg-[#FF8FA3]"
+            className={`ml-8 mr-8 mb-12 ${gameConfig.fonts.button.size} px-8 py-6 ${gameConfig.colors.primaryButton.background} ${gameConfig.colors.primaryButton.text} ${gameConfig.colors.primaryButton.hover} ${gameConfig.fonts.button.family}`}
           >
             Show Answer
           </Button>
@@ -104,7 +123,7 @@ export default function QuestionClient({ params, questions }: QuestionClientProp
         {showAnswer && (
           <div className="mb-12 bg-sunset-cream p-6 rounded-lg border-2 border-[#7C6E8D]">
             {typeof questionData.answer === "string" ? (
-              <div className="text-xl text-left whitespace-pre-line text-sunset-charcoal">{questionData.answer}</div>
+              <div className={`text-xl text-left whitespace-pre-line ${gameConfig.colors.questionText} ${gameConfig.fonts.question.family}`}>{questionData.answer}</div>
             ) : (
               <div className="flex justify-center">
                 <div className="relative">
@@ -116,14 +135,14 @@ export default function QuestionClient({ params, questions }: QuestionClientProp
                   {videoError && retryCount < maxRetries && (
                     <div className="absolute inset-0 flex items-center justify-center bg-sunset-cream/80">
                       <div className="text-center">
-                        <p className="text-sunset-charcoal mb-4">Loading video... Attempt {retryCount + 1} of {maxRetries}</p>
+                        <p className={`${gameConfig.colors.questionText} mb-4 ${gameConfig.fonts.question.family}`}>Loading video... Attempt {retryCount + 1} of {maxRetries}</p>
                         <Button
                           onClick={() => {
                             setVideoError(false)
                             setIsVideoLoading(true)
                             setIsVideoReady(false)
                           }}
-                          className="bg-sunset-lavender text-sunset-charcoal hover:bg-sunset-yellow"
+                          className={`${gameConfig.colors.secondaryButton.background} ${gameConfig.colors.secondaryButton.text} ${gameConfig.colors.secondaryButton.hover} ${gameConfig.fonts.button.family}`}
                         >
                           Retry
                         </Button>
@@ -148,7 +167,7 @@ export default function QuestionClient({ params, questions }: QuestionClientProp
           </div>
         )}
         <Link href="/game?state=preserved">
-          <Button className="ml-8 mr-8 text-lg px-8 py-6 bg-sunset-lavender text-sunset-charcoal hover:bg-sunset-yellow">
+          <Button className={`ml-8 mr-8 ${gameConfig.fonts.button.size} px-8 py-6 ${gameConfig.colors.secondaryButton.background} ${gameConfig.colors.secondaryButton.text} ${gameConfig.colors.secondaryButton.hover} ${gameConfig.fonts.button.family}`}>
             Return to Board
           </Button>
         </Link>
