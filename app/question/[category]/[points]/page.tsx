@@ -170,7 +170,7 @@ const questions: Record<string, Record<number, { question: string; answer: strin
       },
     },
     300: {
-      question: "What's one thing you hope never changes about your relationship?",
+      question: "What is a new tradition you'd like to start together?",
       answer: {
         type: "video",
         content: "/videos/FUTURE_300.mp4",
@@ -191,14 +191,14 @@ const questions: Record<string, Record<number, { question: string; answer: strin
       },
     },
     600: {
-      question: "What is one hobby you'd like to learn together?",
+      question: "Who will be the stricter parent (if you want kids)?",
       answer: {
         type: "video",
         content: "/videos/FUTURE_600.mp4",
       },
     },
     700: {
-      question: "Who will be the stricter parent (if you want kids)?",
+      question: "What is one thing that Lewin will never want to change about the relationship?",
       answer: {
         type: "video",
         content: "/videos/FUTURE_700.mp4",
