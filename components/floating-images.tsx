@@ -34,13 +34,13 @@ export default function FloatingImages({ background = false, showFloatingHeads =
       .map((_, i) => ({
         id: i,
         type: "head" as const,
-        x: Math.random() * (window.innerWidth - 110),
-        y: Math.random() * (window.innerHeight - 110),
+        x: Math.random() * (window.innerWidth - 68),
+        y: Math.random() * (window.innerHeight - 68),
         vx: (Math.random() - 0.5) * 2,
         vy: (Math.random() - 0.5) * 2,
         rotation: Math.random() * 360,
         rotationSpeed: (Math.random() - 0.5) * 2,
-        size: 110,
+        size: 68,
         imageIndex: 0, // First head image
       }))
 
@@ -183,16 +183,16 @@ export default function FloatingImages({ background = false, showFloatingHeads =
             id={`floating-head-${id}`}
             className="absolute"
             style={{
-              width: "110px",
-              height: "110px",
+              width: "80px",
+              height: "80px",
               willChange: "transform",
             }}
           >
             <Image
               src="/fh1.png"
               alt="Floating head"
-              width={110}
-              height={110}
+              width={80}
+              height={80}
               className="w-full h-full object-contain md:scale-125 lg:scale-150"
             />
           </div>
@@ -274,16 +274,16 @@ export default function FloatingImages({ background = false, showFloatingHeads =
             id={`floating-head-${id + 4}`}
             className="absolute"
             style={{
-              width: "100px",
-              height: "100px",
+              width: "90px",
+              height: "90px",
               willChange: "transform",
             }}
           >
             <Image
               src="/fh5.png"
               alt="Floating head"
-              width={100}
-              height={100}
+              width={90}
+              height={90}
               className="w-full h-full object-contain md:scale-125 lg:scale-150"
             />
           </div>
