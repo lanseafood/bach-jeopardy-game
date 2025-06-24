@@ -30,6 +30,70 @@
   .text-balance {
     text-wrap: balance;
   }
+  
+  /* Game-configurable styles using CSS variables */
+  .game-title {
+    color: var(--game-title-color) !important;
+    line-height: 1 !important;
+  }
+  
+  .landing-title {
+    color: var(--landing-title-color) !important;
+    font-size: var(--title-font-size) !important;
+    line-height: 1 !important;
+  }
+  
+  .category-title {
+    color: var(--category-title-color) !important;
+  }
+  
+  .question-text {
+    color: var(--question-text-color) !important;
+  }
+  
+  /* Points button styles - simplified and working */
+  .points-button {
+    @apply w-full h-8 md:h-10 lg:h-12 flex items-center justify-center;
+    @apply text-lg md:text-xl lg:text-2xl font-semibold rounded-md;
+    @apply transition-all duration-200 ease-in-out;
+    @apply border-2 no-underline;
+    background-color: var(--points-bg);
+    color: var(--points-text);
+    border-color: var(--points-border);
+  }
+  
+  .points-button:hover {
+    background-color: var(--points-hover) !important;
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: var(--points-text);
+  }
+  
+  /* Secondary button styles - simplified */
+  .secondary-button {
+    background-color: var(--secondary-bg) !important;
+    color: var(--secondary-text) !important;
+    transition: all 0.3s ease;
+    border: none;
+  }
+  
+  .secondary-button:hover {
+    background-color: var(--secondary-hover) !important;
+    color: var(--secondary-text) !important;
+  }
+  
+  /* Primary button styles - simplified */
+  .primary-button {
+    background-color: var(--primary-bg) !important;
+    color: var(--primary-text) !important;
+    transition: all 0.3s ease;
+    border: none;
+  }
+  
+  .primary-button:hover {
+    background-color: var(--primary-hover) !important;
+    color: var(--primary-text) !important;
+  }
 }
 
 :root {
@@ -112,29 +176,25 @@
   }
 }
 
-/* Custom button styles for our sunset theme */
-.btn-sunset {
-  background-color: #a497c5; /* Lavender Mist */
-  color: #3a3a3a; /* Charcoal Gray */
-  transition: all 0.3s ease;
-  padding: 5px;
+body {
+  @apply bg-gradient-to-b from-[#FFD1DC] to-[#FFE5B4] !important;
+  min-height: 100vh;
 }
 
-.btn-sunset:hover {
-  background-color: #fdb813; /* Golden Yellow */
-}
-
-/* Custom answer box styles */
+/* Animation styles */
 .answer-box {
-  background-color: #f5e1a4; /* Soft Cream */
-  border: 2px solid #4c9ed9; /* Sky Blue */
-  border-radius: 0.5rem;
-  padding: 1.5rem;
+  background: linear-gradient(135deg, #f5e1a4 0%, #fff9e6 100%);
+  border: 3px solid #d4a574;
+  border-radius: 15px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
-/* Custom highlight styles */
 .highlight {
-  color: #ff6f4f; /* Sunset Orange */
-  font-weight: bold;
+  animation: highlight 2s ease-in-out;
+}
+
+@keyframes highlight {
+  0%, 100% { background-color: transparent; }
+  50% { background-color: rgba(253, 184, 19, 0.3); }
 }
 

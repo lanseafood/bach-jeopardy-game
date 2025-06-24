@@ -2,10 +2,17 @@
 
 import { useEffect, useRef } from "react"
 import Image from "next/image"
+import { gameConfig } from "@/lib/game-config"
+
+interface FloatingImagesProps {
+  background?: boolean
+  showFloatingHeads?: boolean
+  showFloatingObjects?: boolean
+}
 
 interface FloatingItem {
   id: number
-  type: "head" | "corgi"
+  type: "head" | "floatingObject"
   x: number
   y: number
   vx: number
@@ -14,112 +21,57 @@ interface FloatingItem {
   rotationSpeed: number
   size: number
   imageIndex?: number // For different head images
+  imageSrc?: string // For floating objects
 }
 
-interface FloatingImagesProps {
-  background?: boolean
-  showFloatingHeads?: boolean
-}
-
-export default function FloatingImages({ background = false, showFloatingHeads = true }: FloatingImagesProps) {
+export default function FloatingImages({ background = false, showFloatingHeads = true, showFloatingObjects = true }: FloatingImagesProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const itemsRef = useRef<FloatingItem[]>([])
   const animationRef = useRef<number>(0)
   const lastTimeRef = useRef<number>(0)
 
   useEffect(() => {
-    // Initialize floating items
-    const heads1 = Array(1)
-      .fill(0)
-      .map((_, i) => ({
-        id: i,
-        type: "head" as const,
-        x: Math.random() * (window.innerWidth - 85),
-        y: Math.random() * (window.innerHeight - 85),
-        vx: (Math.random() - 0.5) * 2,
-        vy: (Math.random() - 0.5) * 2,
-        rotation: Math.random() * 360,
-        rotationSpeed: (Math.random() - 0.5) * 2,
-        size: 85,
-        imageIndex: 0, // First head image
-      }))
+    const floatingConfig = gameConfig.floatingElements
+    const items: FloatingItem[] = []
 
-    const heads2 = Array(1)
-      .fill(0)
-      .map((_, i) => ({
-        id: i + 1, // Start IDs after the first set of heads
-        type: "head" as const,
-        x: Math.random() * (window.innerWidth - 75),
-        y: Math.random() * (window.innerHeight - 75),
-        vx: (Math.random() - 0.5) * 2,
-        vy: (Math.random() - 0.5) * 2,
-        rotation: Math.random() * 360,
-        rotationSpeed: (Math.random() - 0.5) * 2,
-        size: 75,
-        imageIndex: 1, // Second head image
-      }))
+    // Initialize floating heads
+    if (showFloatingHeads) {
+      floatingConfig.floatingHeads.images.forEach((headImage, index) => {
+        items.push({
+          id: index,
+          type: "head" as const,
+          x: Math.random() * (window.innerWidth - headImage.size),
+          y: Math.random() * (window.innerHeight - headImage.size),
+          vx: (Math.random() - 0.5) * 2 * (floatingConfig.floatingHeads.movementSpeed.max - floatingConfig.floatingHeads.movementSpeed.min) + floatingConfig.floatingHeads.movementSpeed.min,
+          vy: (Math.random() - 0.5) * 2 * (floatingConfig.floatingHeads.movementSpeed.max - floatingConfig.floatingHeads.movementSpeed.min) + floatingConfig.floatingHeads.movementSpeed.min,
+          rotation: Math.random() * 360,
+          rotationSpeed: (Math.random() - 0.5) * 2 * (floatingConfig.floatingHeads.rotationSpeed.max - floatingConfig.floatingHeads.rotationSpeed.min) + floatingConfig.floatingHeads.rotationSpeed.min,
+          size: headImage.size,
+          imageIndex: index,
+        })
+      })
+    }
 
-    const heads3 = Array(1)
-      .fill(0)
-      .map((_, i) => ({
-        id: i + 2, // Start IDs after both sets of heads
-        type: "head" as const,
-        x: Math.random() * (window.innerWidth - 65),
-        y: Math.random() * (window.innerHeight - 65),
-        vx: (Math.random() - 0.5) * 2,
-        vy: (Math.random() - 0.5) * 2,
-        rotation: Math.random() * 360,
-        rotationSpeed: (Math.random() - 0.5) * 2,
-        size: 65,              
-        imageIndex: 2, // Second head image
-      }))
+    // Initialize floating objects
+    if (showFloatingObjects) {
+      const objectConfig = floatingConfig.floatingObjects
+      for (let i = 0; i < objectConfig.count; i++) {
+        items.push({
+          id: i + floatingConfig.floatingHeads.images.length,
+          type: "floatingObject" as const,
+          x: Math.random() * (window.innerWidth - objectConfig.sizes.mobile),
+          y: Math.random() * (window.innerHeight - objectConfig.sizes.mobile),
+          vx: (Math.random() - 0.5) * 2 * (objectConfig.movementSpeed.max - objectConfig.movementSpeed.min) + objectConfig.movementSpeed.min,
+          vy: (Math.random() - 0.5) * 2 * (objectConfig.movementSpeed.max - objectConfig.movementSpeed.min) + objectConfig.movementSpeed.min,
+          rotation: Math.random() * 360,
+          rotationSpeed: (Math.random() - 0.5) * 2 * (objectConfig.rotationSpeed.max - objectConfig.rotationSpeed.min) + objectConfig.rotationSpeed.min,
+          size: objectConfig.sizes.mobile,
+          imageSrc: objectConfig.image,
+        })
+      }
+    }
 
-    const heads4 = Array(1)
-      .fill(0)
-      .map((_, i) => ({
-        id: i + 3, // Start IDs after both sets of heads
-        type: "head" as const,
-        x: Math.random() * (window.innerWidth - 65),
-        y: Math.random() * (window.innerHeight - 65),
-        vx: (Math.random() - 0.5) * 2,
-        vy: (Math.random() - 0.5) * 2,
-        rotation: Math.random() * 360,
-        rotationSpeed: (Math.random() - 0.5) * 2,
-        size: 65,
-        imageIndex: 3, // Second head image
-      }))
-
-    const heads5 = Array(1)
-      .fill(0)
-      .map((_, i) => ({
-        id: i + 4, // Start IDs after both sets of heads
-        type: "head" as const,
-        x: Math.random() * (window.innerWidth - 75),
-        y: Math.random() * (window.innerHeight - 75),
-        vx: (Math.random() - 0.5) * 2,
-        vy: (Math.random() - 0.5) * 2,
-        rotation: Math.random() * 360,
-        rotationSpeed: (Math.random() - 0.5) * 2,
-        size: 75,
-        imageIndex: 4, // Second head image
-      }))
-
-    const corgis = Array(8)
-      .fill(0)
-      .map((_, i) => ({
-        id: i + 5, // Start IDs after both sets of heads
-        type: "corgi" as const,
-        x: Math.random() * (window.innerWidth - 65),
-        y: Math.random() * (window.innerHeight - 65),
-        vx: (Math.random() - 0.5) * 2,
-        vy: (Math.random() - 0.5) * 2,
-        rotation: Math.random() * 360,
-        rotationSpeed: (Math.random() - 0.5) * 4, // More rotation
-        size: 65, // Smaller size
-      }))
-
-    // Combine all floating items
-    itemsRef.current = [...heads1, ...heads2, ...heads3, ...heads4, ...heads5, ...corgis]
+    itemsRef.current = items
 
     // Animation function
     const animate = (timestamp: number) => {
@@ -170,144 +122,53 @@ export default function FloatingImages({ background = false, showFloatingHeads =
       cancelAnimationFrame(animationRef.current)
       window.removeEventListener("resize", handleResize)
     }
-  }, [])
+  }, [showFloatingHeads, showFloatingObjects])
+
+  const floatingConfig = gameConfig.floatingElements
 
   return (
     <div ref={containerRef} className={`fixed inset-0 pointer-events-none ${background ? 'z-0' : 'z-50'} overflow-hidden`}>
-      {/* Render first set of floating heads */}
-      {showFloatingHeads && Array(1)
-        .fill(0)
-        .map((_, id) => (
-          <div
-            key={`head-${id}`}
-            id={`floating-head-${id}`}
-            className="absolute"
-            style={{
-              width: "85px",
-              height: "85px",
-              willChange: "transform",
-            }}
-          >
-            <Image
-              src="/fh1.png"
-              alt="Floating head"
-              width={85}
-              height={85}
-              className="w-full h-full object-contain md:scale-125 lg:scale-150"
-            />
-          </div>
-        ))}
+      {/* Render floating heads */}
+      {showFloatingHeads && floatingConfig.floatingHeads.images.map((headImage, index) => (
+        <div
+          key={`head-${index}`}
+          id={`floating-head-${index}`}
+          className="absolute"
+          style={{
+            width: `${headImage.size}px`,
+            height: `${headImage.size}px`,
+            willChange: "transform",
+          }}
+        >
+          <Image
+            src={headImage.src}
+            alt="Floating head"
+            width={headImage.size}
+            height={headImage.size}
+            className="w-full h-full object-contain md:scale-125 lg:scale-150"
+          />
+        </div>
+      ))}
 
-      {/* Render second set of floating heads */}
-      {showFloatingHeads && Array(1)
+      {/* Render floating objects */}
+      {showFloatingObjects && Array(floatingConfig.floatingObjects.count)
         .fill(0)
         .map((_, id) => (
           <div
-            key={`head-2-${id}`}
-            id={`floating-head-${id + 1}`}
+            key={`floatingObject-${id}`}
+            id={`floating-floatingObject-${id + floatingConfig.floatingHeads.images.length}`}
             className="absolute"
             style={{
-              width: "75px",
-              height: "75px",
+              width: `${floatingConfig.floatingObjects.sizes.mobile}px`,
+              height: `${floatingConfig.floatingObjects.sizes.mobile}px`,
               willChange: "transform",
             }}
           >
             <Image
-              src="/fh2.png"
-              alt="Floating head"
-              width={75}
-              height={75}
-              className="w-full h-full object-contain md:scale-125 lg:scale-150"
-            />
-          </div>
-        ))}
-        {showFloatingHeads && Array(1)
-        .fill(0)
-        .map((_, id) => (
-          <div
-            key={`head-3-${id}`}
-            id={`floating-head-${id + 2}`}
-            className="absolute"
-            style={{
-              width: "65px",
-              height: "65px",
-              willChange: "transform",
-            }}
-          >
-            <Image
-              src="/fh3.png"
-              alt="Floating head"
-              width={65}
-              height={65}
-              className="w-full h-full object-contain md:scale-125 lg:scale-150"
-            />
-          </div>
-        ))}
-        {showFloatingHeads && Array(1)
-        .fill(0)
-        .map((_, id) => (
-          <div
-            key={`head-4-${id}`}
-            id={`floating-head-${id + 3}`}
-            className="absolute"
-            style={{
-              width: "65px",
-              height: "65px",
-              willChange: "transform",
-            }}
-          >
-            <Image
-              src="/fh4.png"
-              alt="Floating head"
-              width={65}
-              height={65}
-              className="w-full h-full object-contain md:scale-125 lg:scale-150"
-            />
-          </div>
-        ))}
-
-        {showFloatingHeads && Array(1)
-        .fill(0)
-        .map((_, id) => (
-          <div
-            key={`head-5-${id}`}
-            id={`floating-head-${id + 4}`}
-            className="absolute"
-            style={{
-              width: "75px",
-              height: "75px",
-              willChange: "transform",
-            }}
-          >
-            <Image
-              src="/fh5.png"
-              alt="Floating head"
-              width={75}
-              height={75}
-              className="w-full h-full object-contain md:scale-125 lg:scale-150"
-            />
-          </div>
-        ))}
-
-      {/* Render floating corgis */}
-      {Array(8)
-        .fill(0)
-        .map((_, id) => (
-          <div
-            key={`corgi-${id}`}
-            id={`floating-corgi-${id + 5}`}
-            className="absolute"
-            style={{
-              width: "65px",
-              height: "65px",
-              willChange: "transform",
-            }}
-          >
-            <Image
-              src="/corgi.png"
-              alt="Floating corgi"
-              width={65}
-              height={65}
+              src={floatingConfig.floatingObjects.image}
+              alt="Floating object"
+              width={floatingConfig.floatingObjects.sizes.mobile}
+              height={floatingConfig.floatingObjects.sizes.mobile}
               className="w-full h-full object-contain md:scale-125 lg:scale-150"
             />
           </div>
