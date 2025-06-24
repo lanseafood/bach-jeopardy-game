@@ -96,6 +96,9 @@ export const gameConfig = {
     showStaticTwinkles: true,
   },
 
+  // Point values for the game board
+  pointValues: [100, 200, 300, 400, 500],
+
   // Categories and their questions
   categories: {
     "Jeannie-ology 🧪": {
@@ -247,9 +250,6 @@ export const gameConfig = {
       },
     },
   },
-
-  // Point values for the game board
-  pointValues: [100, 200, 300, 400, 500],
 
   // Floating elements configuration
   floatingElements: {
