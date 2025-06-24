@@ -216,7 +216,7 @@ export const gameConfig = {
         },
       },
       300: {
-        question: "How would you describe you as a couple in three words?",
+        question: "How would you describe you as a couple? Name 2 ways!",
         answer: {
           type: "video",
           content: "/videos/LOVEBIRDS_300.mp4",
@@ -237,14 +237,14 @@ export const gameConfig = {
         },
       },
       600: {
-        question: "What is one thing that made Lewin realize you were the one?",
+        question: "Who is the better cook?",
         answer: {
           type: "video",
           content: "/videos/LOVEBIRDS_600.mp4",
         },
       },
       700: {
-        question: "Who is the better cook?",
+        question: "What is one thing that made Lewin realize you were the one?",
         answer: {
           type: "video",
           content: "/videos/LOVEBIRDS_700.mp4",
