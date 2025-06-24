@@ -6,6 +6,8 @@ import { Button } from "@/components/ui/button"
 import FloatingImages from "@/components/floating-images"
 import StaticTwinkles from "@/components/static-twinkles"
 import Fireworks from "@/components/fireworks"
+import CherryBlossoms from "@/components/cherry-blossoms"
+import ShootingStar from "@/components/shooting-star"
 import { useSearchParams } from "next/navigation"
 import { gameConfig } from "@/lib/game-config"
 
@@ -19,6 +21,8 @@ export default function LandingPage() {
       <FloatingImages showFloatingHeads={false} showFloatingObjects={gameConfig.settings.showFloatingObjects} />
       <StaticTwinkles />
       <Fireworks />
+      {gameConfig.settings.showCherryBlossoms && <CherryBlossoms />}
+      {gameConfig.settings.showShootingStars && <ShootingStar />}
       
       {/* Landing page image - positioned independently */}
       <div className="absolute inset-0 flex items-center justify-center z-0">
