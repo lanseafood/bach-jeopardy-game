@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import FloatingImages from "@/components/floating-images"
 import { useSearchParams } from "next/navigation"
 import { gameConfig, getCategoryNames, getPointValues } from "@/lib/game-config"
+import { tailwindColorMap } from "@/lib/tailwind-colors"
 
 export default function JeopardyBoard() {
   const [showAnswers, setShowAnswers] = useState<Set<string>>(new Set())
@@ -69,8 +70,12 @@ export default function JeopardyBoard() {
     }
   }, [searchParams])
 
+  // Resolve color names to hex codes
+  const fromColor = tailwindColorMap[gameConfig.colors.gamePage.from] || gameConfig.colors.gamePage.from
+  const toColor = tailwindColorMap[gameConfig.colors.gamePage.to] || gameConfig.colors.gamePage.to
+
   const gamePageStyle = {
-    background: `linear-gradient(to bottom, ${gameConfig.colors.gamePage.from}, ${gameConfig.colors.gamePage.to})`
+    background: `linear-gradient(to bottom, ${fromColor}, ${toColor})`
   }
 
   const pointsButtonStyle = {

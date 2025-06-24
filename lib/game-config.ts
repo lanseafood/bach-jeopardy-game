@@ -1,21 +1,21 @@
 // Game Configuration - Easy to customize for different people
 export const gameConfig = {
   // Game Title
-  title: "Ayawin Jeopardy",
+  title: "JeaJon Jeopardy",
   
   // Landing page image
   landingPage: {
     image: {
-      src: "/eiffletower.png",
-      alt: "Eiffel Tower",
+      src: "/vancouver.png",
+      alt: "Vancouver",
       width: 850,
       height: 680,
     },
     titleColor: "#F8F2FF",
     backgroundGradient: {
-      from: "#FFD1DC", // sunset-
-      via: "#F8F2FF", // sunset-cream
-      to: "#FFE5B4", // sunset-
+      from: "sunset-orange", // sunset-
+      via: "sunset-cream", // sunset-cream
+      to: "sunset-green", // sunset-
     },
   },
   
@@ -51,12 +51,12 @@ export const gameConfig = {
   colors: {
     // Background gradients
     gamePage: {
-      from: "#FFE5B4", // sunset-cream
-      to: "#FFD1DC", // sunset-pink
+      from: "sunset-cream", 
+      to: "sunset-green", 
     },
     questionPage: {
-      from: "#FFE5B4", // sunset-cream
-      to: "#FFD1DC", // sunset-
+      from: "sunset-cream", 
+      to: "sunset-green", 
     },
     
     // Button colors
@@ -90,222 +90,166 @@ export const gameConfig = {
   settings: {
     showFloatingObjects: true,
     showFloatingHeads: true,
-    showCherryBlossoms: true,
+    showCherryBlossoms: false,
     showFireworks: true,
-    showShootingStars: true,
+    showShootingStars: false,
     showStaticTwinkles: true,
   },
 
   // Categories and their questions
   categories: {
-    "The Firsts 🥇": {
+    "Jeannie-ology 🧪": {
       100: {
-        question: "Where did you go on the first date?",
+        question: "What app does Jeannie check religiously every morning?",
         answer: {
           type: "video",
-          content: "/videos/FIRSTS_100.mp4",
+          content: "/videos/JEANNIE_100.mp4",
         },
       },
       200: {
-        question: "How long after meeting did you become 'official'?",
+        question: "What color does Jeannie wear the most (and looks 🔥 in)?",
         answer: {
           type: "video",
-          content: "/videos/FIRSTS_200.mp4",
+          content: "/videos/JEANNIE_200.mp4",
         },
       },
       300: {
-        question: "Who made the first move?",
+        question: "What is Jeannie's biggest \"ick\" in dating or relationships?",
         answer: {
           type: "video",
-          content: "/videos/FIRSTS_300.mp4",
+          content: "/videos/JEANNIE_300.mp4",
         },
       },
       400: {
-        question: "Who said I love you first?",
+        question: "If Luna could talk, what's the first thing she'd roast Jeannie about?",
         answer: {
           type: "video",
-          content: "/videos/FIRSTS_400.mp4",
+          content: "/videos/JEANNIE_400.mp4",
         },
       },
       500: {
-        question: "What was the first trip you took together?",
+        question: "What does Jeannie always say she's \"going to stop doing\" but never does?",
         answer: {
           type: "video",
-          content: "/videos/FIRSTS_500.mp4",
-        },
-      },
-      600: {
-        question: "What was the first meal you cooked together?",
-        answer: {
-          type: "video",
-          content: "/videos/FIRSTS_600.mp4",
-        },
-      },
-      700: {
-        question: "What was the first impression?",
-        answer: {
-          type: "video",
-          content: "/videos/FIRSTS_700.mp4",
+          content: "/videos/JEANNIE_500.mp4",
         },
       },
     },
-    "Dates 💑": {
+    "The Pits 🧻": {
       100: {
-        question: "What has been the most extravagant date so far?",
+        question: "How many sheets of TP does she use per poo",
         answer: {
           type: "video",
-          content: "/videos/DATES_100.mp4",
+          content: "/videos/PITS_100.mp4",
         },
       },
       200: {
-        question: "What's the funniest thing that's happened on a date?",
+        question: "Longest time she went without pooing",
         answer: {
           type: "video",
-          content: "/videos/DATES_200.mp4",
+          content: "/videos/PITS_200.mp4",
         },
       },
       300: {
-        question: "What is Lewin's ideal date night?",
+        question: "Which Formula 1 driver would Jon risk it all for?",
         answer: {
           type: "video",
-          content: "/videos/DATES_300.mp4",
+          content: "/videos/PITS_300.mp4",
         },
       },
       400: {
-        question: "What was Lewin's thought about your first date?",
+        question: "Longest poop Jeannie has ever done?",
         answer: {
           type: "video",
-          content: "/videos/DATES_400.mp4",
+          content: "/videos/PITS_400.mp4",
         },
       },
       500: {
-        question: "Who plans the dates most of the time?",
+        question: "What unhinged Jeannie quote belongs on a t-shirt?",
         answer: {
           type: "video",
-          content: "/videos/DATES_500.mp4",
-        },
-      },
-      600: {
-        question: "What's the most spontaneous thing you've done during a date?",
-        answer: {
-          type: "video",
-          content: "/videos/DATES_600.mp4",
-        },
-      },
-      700: {
-        question: "What's your go to date night activity?",
-        answer: {
-          type: "video",
-          content: "/videos/DATES_700.mp4",
+          content: "/videos/PITS_500.mp4",
         },
       },
     },
-    "The Love Birds 🕊️": {
+    "Meet-Cute Moments 💞": {
       100: {
-        question: "What is Lewin's favorite quality about you?",
+        question: "What's a personality trait of hers that you admire the most?",
         answer: {
           type: "video",
-          content: "/videos/LOVEBIRDS_100.mp4",
+          content: "/videos/MEETCUTE_100.mp4",
         },
       },
       200: {
-        question: "What is the one food you both love or hate?",
+        question: "If you had met in high school, would you have dated him or put him in the \"friend zone\"?",
         answer: {
           type: "video",
-          content: "/videos/LOVEBIRDS_200.mp4",
+          content: "/videos/MEETCUTE_200.mp4",
         },
       },
       300: {
-        question: "How would you describe you as a couple? Name 2 ways!",
+        question: "What was Jeannie's first impression of Jon?",
         answer: {
           type: "video",
-          content: "/videos/LOVEBIRDS_300.mp4",
+          content: "/videos/MEETCUTE_300.mp4",
         },
       },
       400: {
-        question: "What is Lewin's love language?",
+        question: "What's his favorite way to show affection when no one is watching?",
         answer: {
           type: "video",
-          content: "/videos/LOVEBIRDS_400.mp4",
+          content: "/videos/MEETCUTE_400.mp4",
         },
       },
       500: {
-        question: "What's a quirky habit of yours that Lewin secretly adores?",
+        question: "What's a challenge you both faced early on that made your relationship stronger?",
         answer: {
           type: "video",
-          content: "/videos/LOVEBIRDS_500.mp4",
-        },
-      },
-      600: {
-        question: "Who is the better cook?",
-        answer: {
-          type: "video",
-          content: "/videos/LOVEBIRDS_600.mp4",
-        },
-      },
-      700: {
-        question: "What is one thing that made Lewin realize you were the one?",
-        answer: {
-          type: "video",
-          content: "/videos/LOVEBIRDS_700.mp4",
+          content: "/videos/MEETCUTE_500.mp4",
         },
       },
     },
-    "The Future 🔮": {
+    "Future Forecast 📈": {
       100: {
-        question: "What's one dream or goal you're excited to pursue together as a couple?",
+        question: "Where are Jeannie and Jon planning to go for their honeymoon?",
         answer: {
           type: "video",
           content: "/videos/FUTURE_100.mp4",
         },
       },
       200: {
-        question: "What kind of pet do you want to have together if any?",
+        question: "What's the one parenting rule he will swear he'll follow… but totally won't?",
         answer: {
           type: "video",
           content: "/videos/FUTURE_200.mp4",
         },
       },
       300: {
-        question: "What is a new tradition you'd like to start together?",
+        question: "What's your ideal weekend routine as a married couple?",
         answer: {
           type: "video",
           content: "/videos/FUTURE_300.mp4",
         },
       },
       400: {
-        question: "Where is Lewin's ideal honeymoon spot?",
+        question: "If you could predict one ridiculous argument you'll have as a married couple, what will it be about?",
         answer: {
           type: "video",
           content: "/videos/FUTURE_400.mp4",
         },
       },
       500: {
-        question: "How many kids do you want together if any?",
+        question: "What are you most looking forward to in your future together?",
         answer: {
           type: "video",
           content: "/videos/FUTURE_500.mp4",
-        },
-      },
-      600: {
-        question: "Who will be the stricter parent (if you want kids)?",
-        answer: {
-          type: "video",
-          content: "/videos/FUTURE_600.mp4",
-        },
-      },
-      700: {
-        question: "What is one thing that Lewin will never want to change about the relationship?",
-        answer: {
-          type: "video",
-          content: "/videos/FUTURE_700.mp4",
         },
       },
     },
   },
 
   // Point values for the game board
-  pointValues: [100, 200, 300, 400, 500, 600, 700],
+  pointValues: [100, 200, 300, 400, 500],
 
   // Floating elements configuration
   floatingElements: {

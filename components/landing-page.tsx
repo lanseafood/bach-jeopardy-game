@@ -11,6 +11,7 @@ import CherryBlossoms from "@/components/cherry-blossoms"
 import ShootingStar from "@/components/shooting-star"
 import { useSearchParams } from "next/navigation"
 import { gameConfig } from "@/lib/game-config"
+import { tailwindColorMap } from "@/lib/tailwind-colors"
 import { useEffect } from "react"
 
 export default function LandingPage() {
@@ -31,8 +32,13 @@ export default function LandingPage() {
     root.style.setProperty('--secondary-hover', gameConfig.colors.secondaryButton.hover)
   }, [])
 
+  // Resolve color names to hex codes
+  const fromColor = tailwindColorMap[gameConfig.landingPage.backgroundGradient.from] || gameConfig.landingPage.backgroundGradient.from
+  const viaColor = tailwindColorMap[gameConfig.landingPage.backgroundGradient.via] || gameConfig.landingPage.backgroundGradient.via
+  const toColor = tailwindColorMap[gameConfig.landingPage.backgroundGradient.to] || gameConfig.landingPage.backgroundGradient.to
+
   const landingPageStyle = {
-    background: `linear-gradient(to bottom, ${gameConfig.landingPage.backgroundGradient.from} 0%, ${gameConfig.landingPage.backgroundGradient.via} 50%, ${gameConfig.landingPage.backgroundGradient.to} 100%)`
+    background: `linear-gradient(to bottom, ${fromColor} 0%, ${viaColor} 50%, ${toColor} 100%)`
   }
 
   const titleStyle = {

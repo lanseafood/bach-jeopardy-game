@@ -1,10 +1,11 @@
 "use client"
 
-import { useState, useEffect, useRef, use } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import FloatingImages from "@/components/floating-images"
 import { gameConfig } from "@/lib/game-config"
+import { tailwindColorMap } from "@/lib/tailwind-colors"
 
 interface QuestionClientProps {
   params: Promise<{ category: string; points: string }>
@@ -13,78 +14,84 @@ interface QuestionClientProps {
 
 export default function QuestionClient({ params, questions }: QuestionClientProps) {
   const [showAnswer, setShowAnswer] = useState(false)
-  const [isVideoLoading, setIsVideoLoading] = useState(true)
+  const [decodedCategory, setDecodedCategory] = useState("")
+  const [points, setPoints] = useState("")
+  const [questionKey, setQuestionKey] = useState("")
+  const [isVideoLoading, setIsVideoLoading] = useState(false)
   const [isVideoReady, setIsVideoReady] = useState(false)
   const [videoError, setVideoError] = useState(false)
   const [retryCount, setRetryCount] = useState(0)
   const maxRetries = 3
-  const { category, points } = use(params)
-  const decodedCategory = decodeURIComponent(decodeURIComponent(category))
-  const questionKey = `${decodedCategory}-${points}`
   const videoRef = useRef<HTMLVideoElement>(null)
 
-  // Set CSS variables from game-config
+  // Parse params
   useEffect(() => {
-    const root = document.documentElement
-    
-    // Title and text colors
-    root.style.setProperty('--question-text-color', gameConfig.colors.questionText)
-    root.style.setProperty('--category-title-color', gameConfig.colors.categoryTitle)
-    
-    // Button colors
-    root.style.setProperty('--primary-bg', gameConfig.colors.primaryButton.background)
-    root.style.setProperty('--primary-text', gameConfig.colors.primaryButton.text)
-    root.style.setProperty('--primary-hover', gameConfig.colors.primaryButton.hover)
-    
-    root.style.setProperty('--secondary-bg', gameConfig.colors.secondaryButton.background)
-    root.style.setProperty('--secondary-text', gameConfig.colors.secondaryButton.text)
-    root.style.setProperty('--secondary-hover', gameConfig.colors.secondaryButton.hover)
-  }, [])
+    const parseParams = async () => {
+      const { category, points: pointsParam } = await params
+      const decoded = decodeURIComponent(category)
+      setDecodedCategory(decoded)
+      setPoints(pointsParam)
+      setQuestionKey(`${decoded}-${pointsParam}`)
+    }
+    parseParams()
+  }, [params])
 
-  // When the answer is shown, update localStorage and play video if it's a video answer
+  // Mark question as answered when showing answer
   useEffect(() => {
-    if (showAnswer && typeof window !== "undefined") {
-      // Get current shown answers from localStorage
-      const storedShowAnswers = localStorage.getItem("showAnswers")
-      let showAnswers: string[] = []
-
-      if (storedShowAnswers) {
-        try {
-          showAnswers = JSON.parse(storedShowAnswers)
-        } catch (e) {
-          console.error("Error parsing showAnswers from localStorage", e)
-        }
+    if (showAnswer && questionKey) {
+      if (typeof window !== "undefined") {
+        const storedShowAnswers = localStorage.getItem("showAnswers")
+        const showAnswersSet = storedShowAnswers ? new Set(JSON.parse(storedShowAnswers)) : new Set()
+        showAnswersSet.add(questionKey)
+        localStorage.setItem("showAnswers", JSON.stringify(Array.from(showAnswersSet)))
       }
+    }
+  }, [showAnswer, questionKey])
 
-      // Add this question to the shown answers if not already there
-      if (!showAnswers.includes(questionKey)) {
-        showAnswers.push(questionKey)
-
-        // Save back to localStorage
-        localStorage.setItem("showAnswers", JSON.stringify(showAnswers))
-      }
-
-      // Play video if it's a video answer with error handling
-      const questionData = questions[decodedCategory]?.[Number.parseInt(points)]
-      if (questionData && typeof questionData.answer !== "string" && videoRef.current) {
-        const playPromise = videoRef.current.play()
-        if (playPromise !== undefined) {
-          playPromise.catch((error) => {
-            // Ignore play interruption errors when navigating away
-            if (error.name !== 'AbortError') {
-              console.error('Video play error:', error)
-            }
-          })
+  // Handle video loading and playing
+  useEffect(() => {
+    if (showAnswer && questionKey && questions[decodedCategory]?.[Number.parseInt(points)]) {
+      const questionData = questions[decodedCategory][Number.parseInt(points)]
+      if (typeof questionData.answer === "object" && questionData.answer.type === "video") {
+        setIsVideoLoading(true)
+        setIsVideoReady(false)
+        setVideoError(false)
+        
+        if (videoRef.current) {
+          videoRef.current.load()
+          const playPromise = videoRef.current.play()
+          if (playPromise !== undefined) {
+            playPromise.catch((error) => {
+              // Ignore play interruption errors when navigating away
+              if (error.name !== 'AbortError') {
+                console.error('Video play error:', error)
+              }
+            })
+          }
         }
       }
     }
   }, [showAnswer, questionKey, decodedCategory, points, questions])
 
+  // Cleanup function to handle video when component unmounts
+  useEffect(() => {
+    return () => {
+      if (videoRef.current) {
+        videoRef.current.pause()
+        videoRef.current.currentTime = 0
+      }
+    }
+  }, [])
+
   // Add error handling to prevent crashes
   const questionData = questions[decodedCategory]?.[Number.parseInt(points)]
 
+  // Resolve color names to hex codes
+  const fromColor = tailwindColorMap[gameConfig.colors.questionPage.from] || gameConfig.colors.questionPage.from
+  const toColor = tailwindColorMap[gameConfig.colors.questionPage.to] || gameConfig.colors.questionPage.to
+
   const questionPageStyle = {
-    background: `linear-gradient(to bottom, ${gameConfig.colors.questionPage.from}, ${gameConfig.colors.questionPage.to})`
+    background: `linear-gradient(to bottom, ${fromColor}, ${toColor})`
   }
 
   const primaryButtonStyle = {
@@ -95,6 +102,18 @@ export default function QuestionClient({ params, questions }: QuestionClientProp
   const secondaryButtonStyle = {
     backgroundColor: gameConfig.colors.secondaryButton.background,
     color: gameConfig.colors.secondaryButton.text,
+  }
+
+  const handleVideoLoad = () => {
+    setIsVideoLoading(false)
+    setIsVideoReady(true)
+  }
+
+  const handleVideoError = () => {
+    setVideoError(true)
+    if (retryCount < maxRetries) {
+      setRetryCount(prev => prev + 1)
+    }
   }
 
   // If question data is not found, show an error message
@@ -124,28 +143,6 @@ export default function QuestionClient({ params, questions }: QuestionClientProp
       </div>
     )
   }
-
-  const handleVideoLoad = () => {
-    setIsVideoLoading(false)
-    setIsVideoReady(true)
-  }
-
-  const handleVideoError = () => {
-    setVideoError(true)
-    if (retryCount < maxRetries) {
-      setRetryCount(prev => prev + 1)
-    }
-  }
-
-  // Cleanup function to handle video when component unmounts
-  useEffect(() => {
-    return () => {
-      if (videoRef.current) {
-        videoRef.current.pause()
-        videoRef.current.currentTime = 0
-      }
-    }
-  }, [])
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-4 relative" style={questionPageStyle}>
