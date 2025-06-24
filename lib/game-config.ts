@@ -1,7 +1,7 @@
 // Game Configuration - Easy to customize for different people
 export const gameConfig = {
   // Game Title
-  title: "[Name] Jeopardy",
+  title: "Ayawin Jeopardy",
   
   // Landing page image
   landingPage: {
@@ -11,33 +11,91 @@ export const gameConfig = {
       width: 850,
       height: 680,
     },
-    titleColor: "text-[#F8F2FF]",
+    titleColor: "#F8F2FF",
+    backgroundGradient: {
+      from: "#FFD1DC", // sunset-
+      via: "#F8F2FF", // sunset-cream
+      to: "#FFE5B4", // sunset-
+    },
   },
   
   // Font configuration - Easy to customize for different people
   fonts: {
-    // Main title font (landing page and game board)
-    title: {
+    // Default site font (used across the entire site unless overridden)
+    default: {
+      family: "font-mogilte",
+    },
+    // Main title font (landing page and game board main titles only)
+    mainTitle: {
       family: "font-classyvogue",
-      size: "text-[6rem]",
+      size: "6rem",
     },
     // Category title font (game board categories)
     category: {
       family: "font-mogilte",
-      size: "text-lg md:text-1.2xl lg:text-1.5xl",
+      size: "text-lg md:text-xl lg:text-2xl",
     },
     // Question text font
     question: {
-      family: "font-sans",
+      family: "font-mogilte",
       size: "text-2xl",
     },
     // Button text font
     button: {
-      family: "font-sans",
+      family: "font-mogilte",
       size: "text-lg md:text-xl lg:text-2xl",
     },
   },
-  
+
+  // Color themes - Easy to customize for different people
+  colors: {
+    // Background gradients
+    gamePage: {
+      from: "#FFE5B4", // sunset-cream
+      to: "#FFD1DC", // sunset-pink
+    },
+    questionPage: {
+      from: "#FFE5B4", // sunset-cream
+      to: "#FFD1DC", // sunset-
+    },
+    
+    // Button colors
+    primaryButton: {
+      background: "#FFBA8B", // sunset-pink
+      text: "#3A3A3A", // sunset-charcoal
+      hover: "#FDB813", // sunset-yellow
+    },
+    secondaryButton: {
+      background: "#FFDBE7", // sunset-cream
+      text: "#3A3A3A", // sunset-charcoal
+      hover: "#FDB813", // sunset-yellow
+    },
+    pointsButton: {
+      background: "#FFDBE7", // sunset-lavender
+      text: "#3A3A3A", // sunset-charcoal
+      hover: "#FDB813", // sunset-yellow
+      border: "#3A3A3A", // sunset-charcoal
+    },
+    
+    // Text colors
+    gameTitle: "#A497C5", // sunset-lavender
+    categoryTitle: "#3A3A3A", // sunset-charcoal
+    questionText: "#3A3A3A", // sunset-charcoal
+    
+    // Border colors
+    border: "#7C6E8D",
+  },
+
+  // Game settings
+  settings: {
+    showFloatingObjects: true,
+    showFloatingHeads: true,
+    showCherryBlossoms: true,
+    showFireworks: true,
+    showShootingStars: true,
+    showStaticTwinkles: true,
+  },
+
   // Categories and their questions
   categories: {
     "The Firsts 🥇": {
@@ -249,44 +307,6 @@ export const gameConfig = {
   // Point values for the game board
   pointValues: [100, 200, 300, 400, 500, 600, 700],
 
-  // Color themes - Easy to customize for different people
-  colors: {
-    // Background gradients
-    landingPage: "from-sunset-orange via-sunset-cream to-sunset-green",
-    gamePage: "from-sunset-cream to-sunset-orange",
-    questionPage: "from-sunset-cream to-sunset-green",
-    
-    // Button colors
-    primaryButton: {
-      background: "bg-sunset-pink",
-      text: "text-sunset-charcoal",
-      hover: "hover:bg-sunset-yellow",
-    },
-    secondaryButton: {
-      background: "bg-sunset-cream",
-      text: "text-sunset-charcoal",
-      hover: "hover:bg-sunset-yellow",
-    },
-    
-    // Text colors
-    title: "text-sunset-charcoal",
-    categoryTitle: "text-sunset-charcoal",
-    questionText: "text-sunset-charcoal",
-    
-    // Border colors
-    border: "border-[#7C6E8D]",
-  },
-
-  // Game settings
-  settings: {
-    showFloatingObjects: true,
-    showFloatingHeads: true,
-    showCherryBlossoms: true,
-    showFireworks: true,
-    showShootingStars: true,
-    showStaticTwinkles: true,
-  },
-
   // Floating elements configuration
   floatingElements: {
     // Floating objects (previously corgis)
@@ -350,4 +370,4 @@ export const getCategoryNames = () => Object.keys(gameConfig.categories)
 export const getAllQuestions = () => gameConfig.categories
 
 // Helper function to get point values
-export const getPointValues = () => gameConfig.pointValues 
+export const getPointValues = () => gameConfig.pointValues

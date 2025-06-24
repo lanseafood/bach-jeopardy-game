@@ -28,14 +28,17 @@ module.exports = {
         sunset: {
           orange: "#FF6F4F", // Warm and inviting
           yellow: "#FDB813", // Bright, optimistic
-          pink: "#FFBA8B", // Soft but lively
+          pink: "#FFD1DC", // Soft but lively
+          babypink: "#FFDBE7", // Very light pink for answer backgrounds
           blue: "#4C9ED9", // A refreshing contrast
           lavender: "#A497C5", // Adds depth with a muted cool tone
           charcoal: "#3A3A3A", // Neutral, grounding for text or borders
-          cream: "#FFDBE7", // Soft neutral for backgrounds or sections
+          cream: "#FFE5B4", // Soft neutral for backgrounds or sections
+          lightcream: "#FFF9E6", // Very light cream for answer backgrounds
+          green: "#A8E6A3", // Light green for gradients
 
           // Mapping to functional names for easier use in components
-          background: "#FFBA8B", // Coral Pink as background
+          background: "#FFD1DC", // Coral Pink as background
           text: "#3A3A3A", // Charcoal Gray for text
           answer: "#F5E1A4", // Soft Cream for answer backgrounds
           highlight: "#FDB813", // Golden Yellow for highlights/hover

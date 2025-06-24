@@ -23,6 +23,24 @@ export default function QuestionClient({ params, questions }: QuestionClientProp
   const questionKey = `${decodedCategory}-${points}`
   const videoRef = useRef<HTMLVideoElement>(null)
 
+  // Set CSS variables from game-config
+  useEffect(() => {
+    const root = document.documentElement
+    
+    // Title and text colors
+    root.style.setProperty('--question-text-color', gameConfig.colors.questionText)
+    root.style.setProperty('--category-title-color', gameConfig.colors.categoryTitle)
+    
+    // Button colors
+    root.style.setProperty('--primary-bg', gameConfig.colors.primaryButton.background)
+    root.style.setProperty('--primary-text', gameConfig.colors.primaryButton.text)
+    root.style.setProperty('--primary-hover', gameConfig.colors.primaryButton.hover)
+    
+    root.style.setProperty('--secondary-bg', gameConfig.colors.secondaryButton.background)
+    root.style.setProperty('--secondary-text', gameConfig.colors.secondaryButton.text)
+    root.style.setProperty('--secondary-hover', gameConfig.colors.secondaryButton.hover)
+  }, [])
+
   // When the answer is shown, update localStorage and play video if it's a video answer
   useEffect(() => {
     if (showAnswer && typeof window !== "undefined") {
@@ -65,18 +83,43 @@ export default function QuestionClient({ params, questions }: QuestionClientProp
   // Add error handling to prevent crashes
   const questionData = questions[decodedCategory]?.[Number.parseInt(points)]
 
+  const questionPageStyle = {
+    background: `linear-gradient(to bottom, ${gameConfig.colors.questionPage.from}, ${gameConfig.colors.questionPage.to})`
+  }
+
+  const primaryButtonStyle = {
+    backgroundColor: gameConfig.colors.primaryButton.background,
+    color: gameConfig.colors.primaryButton.text,
+  }
+
+  const secondaryButtonStyle = {
+    backgroundColor: gameConfig.colors.secondaryButton.background,
+    color: gameConfig.colors.secondaryButton.text,
+  }
+
   // If question data is not found, show an error message
   if (!questionData) {
     return (
-      <div className={`flex flex-col items-center justify-center min-h-screen bg-sunset-pink p-4`}>
-        <div className="bg-white rounded-lg shadow-lg p-8 max-w-4xl w-full text-center border-2 border-[#7C6E8D]">
-          <h1 className={`text-3xl font-bold mb-8 text-[#7C6E8D] ${gameConfig.fonts.title.family}`}>Question Not Found</h1>
-          <p className={`text-xl mb-8 ${gameConfig.colors.questionText} ${gameConfig.fonts.question.family}`}>Sorry, we couldn't find this question.</p>
-          <Link href="/game">
-            <Button className={`ml-8 mr-8 text-lg px-8 py-6 bg-sunset-lavender ${gameConfig.colors.secondaryButton.text} ${gameConfig.colors.secondaryButton.hover} ${gameConfig.fonts.button.family}`}>
-              Return to Board
-            </Button>
-          </Link>
+      <div className="flex flex-col items-center justify-center min-h-screen p-4" style={questionPageStyle}>
+        <div className="bg-white rounded-lg shadow-lg p-8 max-w-4xl w-full text-center" style={{ border: `2px solid ${gameConfig.colors.border}` }}>
+          <h1 className={`text-3xl font-bold mb-8 category-title ${gameConfig.fonts.category.family}`}>Question Not Found</h1>
+          <p className={`text-xl mb-8 question-text ${gameConfig.fonts.question.family}`}>Sorry, we couldn't find this question.</p>
+          <div className="mt-8">
+            <Link href="/game">
+              <Button 
+                className={`${gameConfig.fonts.button.size} px-8 py-6 ${gameConfig.fonts.button.family} font-semibold rounded-lg hover:scale-105 hover:shadow-lg transition-all duration-300`}
+                style={secondaryButtonStyle}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = gameConfig.colors.secondaryButton.hover
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = gameConfig.colors.secondaryButton.background
+                }}
+              >
+                Return to Board
+              </Button>
+            </Link>
+          </div>
         </div>
       </div>
     )
@@ -105,44 +148,79 @@ export default function QuestionClient({ params, questions }: QuestionClientProp
   }, [])
 
   return (
-    <div className={`flex flex-col items-center justify-center min-h-screen bg-gradient-to-b ${gameConfig.colors.questionPage} p-4 relative`}>
+    <div className="flex flex-col items-center justify-center min-h-screen p-4 relative" style={questionPageStyle}>
       <FloatingImages background={true} showFloatingObjects={gameConfig.settings.showFloatingObjects} showFloatingHeads={gameConfig.settings.showFloatingHeads} />
-      <div className="bg-white rounded-lg shadow-lg p-8 max-w-4xl w-full text-center border-2 border-[#7C6E8D] relative z-10">
-        <h1 className={`text-3xl font-bold mb-8 text-[#7C6E8D] ${gameConfig.fonts.title.family}`}>
+      <div className="bg-white rounded-lg shadow-lg p-12 max-w-4xl w-full text-center relative z-10" style={{ border: `2px solid ${gameConfig.colors.border}` }}>
+        <h1 className={`text-3xl font-bold mb-8 category-title ${gameConfig.fonts.category.family}`}>
           {decodedCategory} - Question {points}
         </h1>
-        <div className={`${gameConfig.fonts.question.size} mb-8 ${gameConfig.colors.questionText} ${gameConfig.fonts.question.family}`}>{questionData.question}</div>
+        
+        <div className={`${gameConfig.fonts.question.size} mb-12 question-text ${gameConfig.fonts.question.family}`}>
+          {questionData.question}
+        </div>
+        
         {!showAnswer && (
-          <Button
-            onClick={() => setShowAnswer(true)}
-            className={`ml-8 mr-8 mb-12 ${gameConfig.fonts.button.size} px-8 py-6 ${gameConfig.colors.primaryButton.background} ${gameConfig.colors.primaryButton.text} ${gameConfig.colors.primaryButton.hover} ${gameConfig.fonts.button.family}`}
-          >
-            Show Answer
-          </Button>
+          <div className="mb-16 flex justify-center gap-8">
+            <Button
+              onClick={() => setShowAnswer(true)}
+              className={`${gameConfig.fonts.button.size} px-10 py-6 ${gameConfig.fonts.button.family} font-semibold rounded-lg hover:scale-105 hover:shadow-lg transition-all duration-300`}
+              style={primaryButtonStyle}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = gameConfig.colors.primaryButton.hover
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = gameConfig.colors.primaryButton.background
+              }}
+            >
+              Show Answer
+            </Button>
+            <Link href="/game?state=preserved">
+              <Button 
+                className={`${gameConfig.fonts.button.size} px-10 py-6 ${gameConfig.fonts.button.family} font-semibold rounded-lg hover:scale-105 hover:shadow-lg transition-all duration-300`}
+                style={secondaryButtonStyle}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = gameConfig.colors.secondaryButton.hover
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = gameConfig.colors.secondaryButton.background
+                }}
+              >
+                Return to Board
+              </Button>
+            </Link>
+          </div>
         )}
+        
         {showAnswer && (
-          <div className="mb-12 bg-sunset-cream p-6 rounded-lg border-2 border-[#7C6E8D]">
+          <div className="mb-16 answer-box p-8">
             {typeof questionData.answer === "string" ? (
-              <div className={`text-xl text-left whitespace-pre-line ${gameConfig.colors.questionText} ${gameConfig.fonts.question.family}`}>{questionData.answer}</div>
+              <div className={`text-xl text-left whitespace-pre-line question-text ${gameConfig.fonts.question.family}`}>{questionData.answer}</div>
             ) : (
               <div className="flex justify-center">
                 <div className="relative">
                   {isVideoLoading && (
-                    <div className="absolute inset-0 flex items-center justify-center bg-sunset-cream/80">
-                      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#7C6E8D]"></div>
+                    <div className="absolute inset-0 flex items-center justify-center bg-white/80 rounded-lg">
+                      <div className="animate-spin rounded-full h-12 w-12 border-b-2" style={{ borderColor: gameConfig.colors.border }}></div>
                     </div>
                   )}
                   {videoError && retryCount < maxRetries && (
-                    <div className="absolute inset-0 flex items-center justify-center bg-sunset-cream/80">
+                    <div className="absolute inset-0 flex items-center justify-center bg-white/80 rounded-lg">
                       <div className="text-center">
-                        <p className={`${gameConfig.colors.questionText} mb-4 ${gameConfig.fonts.question.family}`}>Loading video... Attempt {retryCount + 1} of {maxRetries}</p>
+                        <p className={`question-text mb-6 ${gameConfig.fonts.question.family}`}>Loading video... Attempt {retryCount + 1} of {maxRetries}</p>
                         <Button
                           onClick={() => {
                             setVideoError(false)
                             setIsVideoLoading(true)
                             setIsVideoReady(false)
                           }}
-                          className={`${gameConfig.colors.secondaryButton.background} ${gameConfig.colors.secondaryButton.text} ${gameConfig.colors.secondaryButton.hover} ${gameConfig.fonts.button.family}`}
+                          className={`${gameConfig.fonts.button.family} px-6 py-3 rounded-lg hover:scale-105 transition-all duration-300`}
+                          style={secondaryButtonStyle}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.backgroundColor = gameConfig.colors.secondaryButton.hover
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.backgroundColor = gameConfig.colors.secondaryButton.background
+                          }}
                         >
                           Retry
                         </Button>
@@ -153,7 +231,8 @@ export default function QuestionClient({ params, questions }: QuestionClientProp
                     ref={videoRef}
                     controls 
                     autoPlay 
-                    className="w-full max-w-2xl border-2 border-[#7C6E8D] rounded-lg"
+                    className="w-full max-w-2xl rounded-lg"
+                    style={{ border: `2px solid ${gameConfig.colors.border}` }}
                     onLoadedData={handleVideoLoad}
                     onError={handleVideoError}
                     preload="metadata"
@@ -166,11 +245,25 @@ export default function QuestionClient({ params, questions }: QuestionClientProp
             )}
           </div>
         )}
-        <Link href="/game?state=preserved">
-          <Button className={`ml-8 mr-8 ${gameConfig.fonts.button.size} px-8 py-6 ${gameConfig.colors.secondaryButton.background} ${gameConfig.colors.secondaryButton.text} ${gameConfig.colors.secondaryButton.hover} ${gameConfig.fonts.button.family}`}>
-            Return to Board
-          </Button>
-        </Link>
+        
+        {showAnswer && (
+          <div className="mt-8 flex justify-center">
+            <Link href="/game?state=preserved">
+              <Button 
+                className={`${gameConfig.fonts.button.size} px-10 py-6 ${gameConfig.fonts.button.family} font-semibold rounded-lg hover:scale-105 hover:shadow-lg transition-all duration-300`}
+                style={secondaryButtonStyle}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = gameConfig.colors.secondaryButton.hover
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = gameConfig.colors.secondaryButton.background
+                }}
+              >
+                Return to Board
+              </Button>
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   )
