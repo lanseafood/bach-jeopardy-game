@@ -20,25 +20,46 @@ export default function JeopardyBoard() {
   useEffect(() => {
     const root = document.documentElement
     
-    // Title and text colors
-    root.style.setProperty('--landing-title-color', gameConfig.landingPage.titleColor)
-    root.style.setProperty('--game-title-color', gameConfig.colors.gameTitle)
-    root.style.setProperty('--category-title-color', gameConfig.colors.categoryTitle)
-    root.style.setProperty('--question-text-color', gameConfig.colors.questionText)
+    // Resolve color names to hex codes
+    const gameTitleColor = tailwindColorMap[gameConfig.colors.gameTitle] || gameConfig.colors.gameTitle
+    const titleColor = tailwindColorMap[gameConfig.landingPage.titleColor] || gameConfig.landingPage.titleColor
+    const categoryTitleColor = tailwindColorMap[gameConfig.colors.categoryTitle] || gameConfig.colors.categoryTitle
+    const questionTextColor = tailwindColorMap[gameConfig.colors.questionText] || gameConfig.colors.questionText
+    const borderColor = tailwindColorMap[gameConfig.colors.border] || gameConfig.colors.border
     
     // Button colors
-    root.style.setProperty('--points-bg', gameConfig.colors.pointsButton.background)
-    root.style.setProperty('--points-text', gameConfig.colors.pointsButton.text)
-    root.style.setProperty('--points-border', gameConfig.colors.pointsButton.border)
-    root.style.setProperty('--points-hover', gameConfig.colors.pointsButton.hover)
+    const primaryBg = tailwindColorMap[gameConfig.colors.primaryButton.background] || gameConfig.colors.primaryButton.background
+    const primaryText = tailwindColorMap[gameConfig.colors.primaryButton.text] || gameConfig.colors.primaryButton.text
+    const primaryHover = tailwindColorMap[gameConfig.colors.primaryButton.hover] || gameConfig.colors.primaryButton.hover
     
-    root.style.setProperty('--secondary-bg', gameConfig.colors.secondaryButton.background)
-    root.style.setProperty('--secondary-text', gameConfig.colors.secondaryButton.text)
-    root.style.setProperty('--secondary-hover', gameConfig.colors.secondaryButton.hover)
+    const secondaryBg = tailwindColorMap[gameConfig.colors.secondaryButton.background] || gameConfig.colors.secondaryButton.background
+    const secondaryText = tailwindColorMap[gameConfig.colors.secondaryButton.text] || gameConfig.colors.secondaryButton.text
+    const secondaryHover = tailwindColorMap[gameConfig.colors.secondaryButton.hover] || gameConfig.colors.secondaryButton.hover
     
-    root.style.setProperty('--primary-bg', gameConfig.colors.primaryButton.background)
-    root.style.setProperty('--primary-text', gameConfig.colors.primaryButton.text)
-    root.style.setProperty('--primary-hover', gameConfig.colors.primaryButton.hover)
+    const pointsBg = tailwindColorMap[gameConfig.colors.pointsButton.background] || gameConfig.colors.pointsButton.background
+    const pointsText = tailwindColorMap[gameConfig.colors.pointsButton.text] || gameConfig.colors.pointsButton.text
+    const pointsBorder = tailwindColorMap[gameConfig.colors.pointsButton.border] || gameConfig.colors.pointsButton.border
+    const pointsHover = tailwindColorMap[gameConfig.colors.pointsButton.hover] || gameConfig.colors.pointsButton.hover
+    
+    // Title and text colors
+    root.style.setProperty('--landing-title-color', titleColor)
+    root.style.setProperty('--game-title-color', gameTitleColor)
+    root.style.setProperty('--category-title-color', categoryTitleColor)
+    root.style.setProperty('--question-text-color', questionTextColor)
+    
+    // Button colors
+    root.style.setProperty('--points-bg', pointsBg)
+    root.style.setProperty('--points-text', pointsText)
+    root.style.setProperty('--points-border', pointsBorder)
+    root.style.setProperty('--points-hover', pointsHover)
+    
+    root.style.setProperty('--secondary-bg', secondaryBg)
+    root.style.setProperty('--secondary-text', secondaryText)
+    root.style.setProperty('--secondary-hover', secondaryHover)
+    
+    root.style.setProperty('--primary-bg', primaryBg)
+    root.style.setProperty('--primary-text', primaryText)
+    root.style.setProperty('--primary-hover', primaryHover)
   }, [])
 
   // Mark as hydrated after first render
@@ -73,15 +94,30 @@ export default function JeopardyBoard() {
   // Resolve color names to hex codes
   const fromColor = tailwindColorMap[gameConfig.colors.gamePage.from] || gameConfig.colors.gamePage.from
   const toColor = tailwindColorMap[gameConfig.colors.gamePage.to] || gameConfig.colors.gamePage.to
+  const gameTitleColor = tailwindColorMap[gameConfig.colors.gameTitle] || gameConfig.colors.gameTitle
+
+  // Button colors
+  const primaryBg = tailwindColorMap[gameConfig.colors.primaryButton.background] || gameConfig.colors.primaryButton.background
+  const primaryText = tailwindColorMap[gameConfig.colors.primaryButton.text] || gameConfig.colors.primaryButton.text
+  const primaryHover = tailwindColorMap[gameConfig.colors.primaryButton.hover] || gameConfig.colors.primaryButton.hover
+  
+  const secondaryBg = tailwindColorMap[gameConfig.colors.secondaryButton.background] || gameConfig.colors.secondaryButton.background
+  const secondaryText = tailwindColorMap[gameConfig.colors.secondaryButton.text] || gameConfig.colors.secondaryButton.text
+  const secondaryHover = tailwindColorMap[gameConfig.colors.secondaryButton.hover] || gameConfig.colors.secondaryButton.hover
+  
+  const pointsBg = tailwindColorMap[gameConfig.colors.pointsButton.background] || gameConfig.colors.pointsButton.background
+  const pointsText = tailwindColorMap[gameConfig.colors.pointsButton.text] || gameConfig.colors.pointsButton.text
+  const pointsBorder = tailwindColorMap[gameConfig.colors.pointsButton.border] || gameConfig.colors.pointsButton.border
+  const pointsHover = tailwindColorMap[gameConfig.colors.pointsButton.hover] || gameConfig.colors.pointsButton.hover
 
   const gamePageStyle = {
     background: `linear-gradient(to bottom, ${fromColor}, ${toColor})`
   }
 
   const pointsButtonStyle = {
-    backgroundColor: gameConfig.colors.pointsButton.background,
-    color: gameConfig.colors.pointsButton.text,
-    border: `2px solid ${gameConfig.colors.pointsButton.border}`,
+    backgroundColor: pointsBg,
+    color: pointsText,
+    border: `2px solid ${pointsBorder}`,
     borderRadius: '0.375rem',
     transition: 'all 0.2s ease-in-out',
     textDecoration: 'none',
@@ -95,9 +131,9 @@ export default function JeopardyBoard() {
   }
 
   const answeredButtonStyle = {
-    backgroundColor: gameConfig.colors.secondaryButton.background,
-    color: gameConfig.colors.secondaryButton.text,
-    border: `2px solid ${gameConfig.colors.pointsButton.border}`,
+    backgroundColor: secondaryBg,
+    color: secondaryText,
+    border: `2px solid ${pointsBorder}`,
     borderRadius: '0.375rem',
     transition: 'all 0.2s ease-in-out',
     textDecoration: 'none',
@@ -112,13 +148,14 @@ export default function JeopardyBoard() {
   }
 
   const secondaryButtonStyle = {
-    backgroundColor: gameConfig.colors.secondaryButton.background,
-    color: gameConfig.colors.secondaryButton.text,
+    backgroundColor: secondaryBg,
+    color: secondaryText,
   }
 
   const gameTitleStyle = {
     fontSize: gameConfig.fonts.mainTitle.size,
     fontFamily: '"ClassyVogue", sans-serif',
+    color: gameTitleColor,
   }
 
   return (
@@ -136,10 +173,10 @@ export default function JeopardyBoard() {
               className={`${gameConfig.fonts.button.size} ${gameConfig.fonts.button.family} px-6 py-3 rounded-lg font-semibold hover:scale-105 hover:shadow-lg transition-all duration-300`}
               style={secondaryButtonStyle}
               onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = gameConfig.colors.secondaryButton.hover
+                e.currentTarget.style.backgroundColor = secondaryHover
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = gameConfig.colors.secondaryButton.background
+                e.currentTarget.style.backgroundColor = secondaryBg
               }}
             >
               Back to Home
@@ -170,12 +207,12 @@ export default function JeopardyBoard() {
                           style={answeredButtonStyle}
                           className="md:h-10 lg:h-12 md:text-xl lg:text-2xl relative"
                           onMouseEnter={(e) => {
-                            e.currentTarget.style.backgroundColor = gameConfig.colors.secondaryButton.hover
+                            e.currentTarget.style.backgroundColor = secondaryHover
                             e.currentTarget.style.transform = 'scale(1.02)'
                             e.currentTarget.style.opacity = '1'
                           }}
                           onMouseLeave={(e) => {
-                            e.currentTarget.style.backgroundColor = gameConfig.colors.secondaryButton.background
+                            e.currentTarget.style.backgroundColor = secondaryBg
                             e.currentTarget.style.transform = 'scale(1)'
                             e.currentTarget.style.opacity = '0.8'
                           }}
@@ -206,12 +243,12 @@ export default function JeopardyBoard() {
                           style={pointsButtonStyle}
                           className="md:h-10 lg:h-12 md:text-xl lg:text-2xl"
                           onMouseEnter={(e) => {
-                            e.currentTarget.style.backgroundColor = gameConfig.colors.pointsButton.hover
+                            e.currentTarget.style.backgroundColor = pointsHover
                             e.currentTarget.style.transform = 'scale(1.05)'
                             e.currentTarget.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)'
                           }}
                           onMouseLeave={(e) => {
-                            e.currentTarget.style.backgroundColor = gameConfig.colors.pointsButton.background
+                            e.currentTarget.style.backgroundColor = pointsBg
                             e.currentTarget.style.transform = 'scale(1)'
                             e.currentTarget.style.boxShadow = 'none'
                           }}

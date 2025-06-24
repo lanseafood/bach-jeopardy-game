@@ -90,18 +90,27 @@ export default function QuestionClient({ params, questions }: QuestionClientProp
   const fromColor = tailwindColorMap[gameConfig.colors.questionPage.from] || gameConfig.colors.questionPage.from
   const toColor = tailwindColorMap[gameConfig.colors.questionPage.to] || gameConfig.colors.questionPage.to
 
+  // Button colors
+  const primaryBg = tailwindColorMap[gameConfig.colors.primaryButton.background] || gameConfig.colors.primaryButton.background
+  const primaryText = tailwindColorMap[gameConfig.colors.primaryButton.text] || gameConfig.colors.primaryButton.text
+  const primaryHover = tailwindColorMap[gameConfig.colors.primaryButton.hover] || gameConfig.colors.primaryButton.hover
+  
+  const secondaryBg = tailwindColorMap[gameConfig.colors.secondaryButton.background] || gameConfig.colors.secondaryButton.background
+  const secondaryText = tailwindColorMap[gameConfig.colors.secondaryButton.text] || gameConfig.colors.secondaryButton.text
+  const secondaryHover = tailwindColorMap[gameConfig.colors.secondaryButton.hover] || gameConfig.colors.secondaryButton.hover
+
   const questionPageStyle = {
     background: `linear-gradient(to bottom, ${fromColor}, ${toColor})`
   }
 
   const primaryButtonStyle = {
-    backgroundColor: gameConfig.colors.primaryButton.background,
-    color: gameConfig.colors.primaryButton.text,
+    backgroundColor: primaryBg,
+    color: primaryText,
   }
 
   const secondaryButtonStyle = {
-    backgroundColor: gameConfig.colors.secondaryButton.background,
-    color: gameConfig.colors.secondaryButton.text,
+    backgroundColor: secondaryBg,
+    color: secondaryText,
   }
 
   const handleVideoLoad = () => {
@@ -163,10 +172,10 @@ export default function QuestionClient({ params, questions }: QuestionClientProp
               className={`${gameConfig.fonts.button.size} px-10 py-6 ${gameConfig.fonts.button.family} font-semibold rounded-lg hover:scale-105 hover:shadow-lg transition-all duration-300`}
               style={primaryButtonStyle}
               onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = gameConfig.colors.primaryButton.hover
+                e.currentTarget.style.backgroundColor = primaryHover
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = gameConfig.colors.primaryButton.background
+                e.currentTarget.style.backgroundColor = primaryBg
               }}
             >
               Show Answer
@@ -176,10 +185,10 @@ export default function QuestionClient({ params, questions }: QuestionClientProp
                 className={`${gameConfig.fonts.button.size} px-10 py-6 ${gameConfig.fonts.button.family} font-semibold rounded-lg hover:scale-105 hover:shadow-lg transition-all duration-300`}
                 style={secondaryButtonStyle}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = gameConfig.colors.secondaryButton.hover
+                  e.currentTarget.style.backgroundColor = secondaryHover
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = gameConfig.colors.secondaryButton.background
+                  e.currentTarget.style.backgroundColor = secondaryBg
                 }}
               >
                 Return to Board
@@ -213,10 +222,10 @@ export default function QuestionClient({ params, questions }: QuestionClientProp
                           className={`${gameConfig.fonts.button.family} px-6 py-3 rounded-lg hover:scale-105 transition-all duration-300`}
                           style={secondaryButtonStyle}
                           onMouseEnter={(e) => {
-                            e.currentTarget.style.backgroundColor = gameConfig.colors.secondaryButton.hover
+                            e.currentTarget.style.backgroundColor = secondaryHover
                           }}
                           onMouseLeave={(e) => {
-                            e.currentTarget.style.backgroundColor = gameConfig.colors.secondaryButton.background
+                            e.currentTarget.style.backgroundColor = secondaryBg
                           }}
                         >
                           Retry
@@ -250,10 +259,10 @@ export default function QuestionClient({ params, questions }: QuestionClientProp
                 className={`${gameConfig.fonts.button.size} px-10 py-6 ${gameConfig.fonts.button.family} font-semibold rounded-lg hover:scale-105 hover:shadow-lg transition-all duration-300`}
                 style={secondaryButtonStyle}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = gameConfig.colors.secondaryButton.hover
+                  e.currentTarget.style.backgroundColor = secondaryHover
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = gameConfig.colors.secondaryButton.background
+                  e.currentTarget.style.backgroundColor = secondaryBg
                 }}
               >
                 Return to Board

@@ -23,34 +23,48 @@ export default function LandingPage() {
   useEffect(() => {
     const root = document.documentElement
     
-    // Title and text colors
-    root.style.setProperty('--landing-title-color', gameConfig.landingPage.titleColor)
+    // Resolve color names to hex codes
+    const titleColor = tailwindColorMap[gameConfig.landingPage.titleColor] || gameConfig.landingPage.titleColor
     
     // Button colors
-    root.style.setProperty('--secondary-bg', gameConfig.colors.secondaryButton.background)
-    root.style.setProperty('--secondary-text', gameConfig.colors.secondaryButton.text)
-    root.style.setProperty('--secondary-hover', gameConfig.colors.secondaryButton.hover)
+    const secondaryBg = tailwindColorMap[gameConfig.colors.secondaryButton.background] || gameConfig.colors.secondaryButton.background
+    const secondaryText = tailwindColorMap[gameConfig.colors.secondaryButton.text] || gameConfig.colors.secondaryButton.text
+    const secondaryHover = tailwindColorMap[gameConfig.colors.secondaryButton.hover] || gameConfig.colors.secondaryButton.hover
+    
+    // Title and text colors
+    root.style.setProperty('--landing-title-color', titleColor)
+    
+    // Button colors
+    root.style.setProperty('--secondary-bg', secondaryBg)
+    root.style.setProperty('--secondary-text', secondaryText)
+    root.style.setProperty('--secondary-hover', secondaryHover)
   }, [])
 
   // Resolve color names to hex codes
   const fromColor = tailwindColorMap[gameConfig.landingPage.backgroundGradient.from] || gameConfig.landingPage.backgroundGradient.from
   const viaColor = tailwindColorMap[gameConfig.landingPage.backgroundGradient.via] || gameConfig.landingPage.backgroundGradient.via
   const toColor = tailwindColorMap[gameConfig.landingPage.backgroundGradient.to] || gameConfig.landingPage.backgroundGradient.to
+  const titleColor = tailwindColorMap[gameConfig.landingPage.titleColor] || gameConfig.landingPage.titleColor
+
+  // Button colors
+  const secondaryBg = tailwindColorMap[gameConfig.colors.secondaryButton.background] || gameConfig.colors.secondaryButton.background
+  const secondaryText = tailwindColorMap[gameConfig.colors.secondaryButton.text] || gameConfig.colors.secondaryButton.text
+  const secondaryHover = tailwindColorMap[gameConfig.colors.secondaryButton.hover] || gameConfig.colors.secondaryButton.hover
 
   const landingPageStyle = {
     background: `linear-gradient(to bottom, ${fromColor} 0%, ${viaColor} 50%, ${toColor} 100%)`
   }
 
   const titleStyle = {
-    color: gameConfig.landingPage.titleColor,
+    color: titleColor,
     fontSize: gameConfig.fonts.mainTitle.size,
     fontFamily: '"ClassyVogue", sans-serif',
     lineHeight: 1,
   }
 
   const secondaryButtonStyle = {
-    backgroundColor: gameConfig.colors.secondaryButton.background,
-    color: gameConfig.colors.secondaryButton.text,
+    backgroundColor: secondaryBg,
+    color: secondaryText,
   }
 
   return (
@@ -93,10 +107,10 @@ export default function LandingPage() {
             className={`${gameConfig.fonts.button.size} px-12 py-6 ${gameConfig.fonts.button.family} font-semibold transition-all duration-300 hover:scale-110 hover:shadow-lg rounded-lg`}
             style={secondaryButtonStyle}
             onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = gameConfig.colors.secondaryButton.hover
+              e.currentTarget.style.backgroundColor = secondaryHover
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = gameConfig.colors.secondaryButton.background
+              e.currentTarget.style.backgroundColor = secondaryBg
             }}
           >
             Let's Play!
