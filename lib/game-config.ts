@@ -33,7 +33,7 @@ export const gameConfig = {
     // Category title font (game board categories)
     category: {
       family: "font-mogilte",
-      size: "text-lg md:text-xl lg:text-xl",
+      size: "text-md md:text-md lg:text-md",
     },
     // Question text font
     question: {
@@ -90,6 +90,7 @@ export const gameConfig = {
   settings: {
     showFloatingObjects: true,
     showFloatingHeads: true,
+    showLandingPageFloatingHeads: true,
     showCherryBlossoms: false,
     showFireworks: true,
     showShootingStars: false,
@@ -180,35 +181,35 @@ export const gameConfig = {
         question: "What's a personality trait of hers that you admire the most?",
         answer: {
           type: "video",
-          content: "/videos/MEETCUTE_100.mp4",
+          content: "/videos/MEET_100.mp4",
         },
       },
       200: {
         question: "If you had met in high school, would you have dated him or put him in the \"friend zone\"?",
         answer: {
           type: "video",
-          content: "/videos/MEETCUTE_200.mp4",
+          content: "/videos/MEET_200.mp4",
         },
       },
       300: {
         question: "What was Jeannie's first impression of Jon?",
         answer: {
           type: "video",
-          content: "/videos/MEETCUTE_300.mp4",
+          content: "/videos/MEET_300.mp4",
         },
       },
       400: {
         question: "What's his favorite way to show affection when no one is watching?",
         answer: {
           type: "video",
-          content: "/videos/MEETCUTE_400.mp4",
+          content: "/videos/MEET_400.mp4",
         },
       },
       500: {
         question: "What's a challenge you both faced early on that made your relationship stronger?",
         answer: {
           type: "video",
-          content: "/videos/MEETCUTE_500.mp4",
+          content: "/videos/MEET_500.mp4",
         },
       },
     },
@@ -256,7 +257,7 @@ export const gameConfig = {
     // Floating objects (previously corgis)
     floatingObjects: {
       image: "/corgi.png",
-      count: 8,
+      count: 6,
       sizes: {
         mobile: 65,
         tablet: 80,
@@ -271,7 +272,7 @@ export const gameConfig = {
         max: 1,
       },
     },
-    // Floating heads
+    // Floating heads for game page
     floatingHeads: {
       images: [
         {
@@ -293,6 +294,47 @@ export const gameConfig = {
         {
           src: "/fh5.png",
           size: 75,
+        },
+        {
+          src: "/fh6.png",
+          size: 70,
+        },
+        {
+          src: "/fh7.png",
+          size: 80,
+        },
+        {
+          src: "/fh8.png",
+          size: 60,
+        },
+      ],
+      rotationSpeed: {
+        min: -1,
+        max: 1,
+      },
+      movementSpeed: {
+        min: -1,
+        max: 1,
+      },
+    },
+    // Floating heads for landing page (separate images)
+    landingPageFloatingHeads: {
+      images: [
+        {
+          src: "/landing_fh1.png",
+          size: 80,
+        },
+        {
+          src: "/landing_fh2.png", 
+          size: 70,
+        },
+        {
+          src: "/landing_fh3.png",
+          size: 75,
+        },
+        {
+          src: "/landing_fh4.png",
+          size: 65,
         },
       ],
       rotationSpeed: {

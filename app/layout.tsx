@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import SuppressHydrationWarning from '@/components/suppress-hydration-warning'
 
 export const metadata: Metadata = {
   title: 'Bachelorette Jeopardy Game - Fun Party Game for Bachelorette Parties',
@@ -64,7 +65,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="font-mogilte">{children}</body>
+      <body className="font-mogilte">
+        <SuppressHydrationWarning />
+        {children}
+      </body>
     </html>
   )
 }

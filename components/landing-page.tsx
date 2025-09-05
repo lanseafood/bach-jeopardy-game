@@ -69,7 +69,7 @@ export default function LandingPage() {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center relative" style={landingPageStyle}>
-      <FloatingImages showFloatingHeads={false} showFloatingObjects={gameConfig.settings.showFloatingObjects} />
+      <FloatingImages showFloatingHeads={gameConfig.settings.showLandingPageFloatingHeads} showFloatingObjects={gameConfig.settings.showFloatingObjects} isLandingPage={true} />
       <StaticTwinkles />
       <Fireworks />
       <FallingGreenLeaves />

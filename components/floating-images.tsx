@@ -8,6 +8,7 @@ interface FloatingImagesProps {
   background?: boolean
   showFloatingHeads?: boolean
   showFloatingObjects?: boolean
+  isLandingPage?: boolean
 }
 
 interface FloatingItem {
@@ -24,7 +25,7 @@ interface FloatingItem {
   imageSrc?: string // For floating objects
 }
 
-export default function FloatingImages({ background = false, showFloatingHeads = true, showFloatingObjects = true }: FloatingImagesProps) {
+export default function FloatingImages({ background = false, showFloatingHeads = true, showFloatingObjects = true, isLandingPage = false }: FloatingImagesProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const itemsRef = useRef<FloatingItem[]>([])
   const animationRef = useRef<number>(0)
@@ -36,16 +37,19 @@ export default function FloatingImages({ background = false, showFloatingHeads =
 
     // Initialize floating heads
     if (showFloatingHeads) {
-      floatingConfig.floatingHeads.images.forEach((headImage, index) => {
+      // Use landing page heads if on landing page, otherwise use game page heads
+      const headsConfig = isLandingPage ? floatingConfig.landingPageFloatingHeads : floatingConfig.floatingHeads
+      
+      headsConfig.images.forEach((headImage, index) => {
         items.push({
           id: index,
           type: "head" as const,
           x: Math.random() * (window.innerWidth - headImage.size),
           y: Math.random() * (window.innerHeight - headImage.size),
-          vx: (Math.random() - 0.5) * 2 * (floatingConfig.floatingHeads.movementSpeed.max - floatingConfig.floatingHeads.movementSpeed.min) + floatingConfig.floatingHeads.movementSpeed.min,
-          vy: (Math.random() - 0.5) * 2 * (floatingConfig.floatingHeads.movementSpeed.max - floatingConfig.floatingHeads.movementSpeed.min) + floatingConfig.floatingHeads.movementSpeed.min,
+          vx: (Math.random() - 0.5) * 2 * (headsConfig.movementSpeed.max - headsConfig.movementSpeed.min) + headsConfig.movementSpeed.min,
+          vy: (Math.random() - 0.5) * 2 * (headsConfig.movementSpeed.max - headsConfig.movementSpeed.min) + headsConfig.movementSpeed.min,
           rotation: Math.random() * 360,
-          rotationSpeed: (Math.random() - 0.5) * 2 * (floatingConfig.floatingHeads.rotationSpeed.max - floatingConfig.floatingHeads.rotationSpeed.min) + floatingConfig.floatingHeads.rotationSpeed.min,
+          rotationSpeed: (Math.random() - 0.5) * 2 * (headsConfig.rotationSpeed.max - headsConfig.rotationSpeed.min) + headsConfig.rotationSpeed.min,
           size: headImage.size,
           imageIndex: index,
         })
@@ -129,7 +133,7 @@ export default function FloatingImages({ background = false, showFloatingHeads =
   return (
     <div ref={containerRef} className={`fixed inset-0 pointer-events-none ${background ? 'z-0' : 'z-50'} overflow-hidden`}>
       {/* Render floating heads */}
-      {showFloatingHeads && floatingConfig.floatingHeads.images.map((headImage, index) => (
+      {showFloatingHeads && (isLandingPage ? floatingConfig.landingPageFloatingHeads : floatingConfig.floatingHeads).images.map((headImage, index) => (
         <div
           key={`head-${index}`}
           id={`floating-head-${index}`}
