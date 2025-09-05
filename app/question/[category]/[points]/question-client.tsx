@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import FloatingImages from "@/components/floating-images"
 import { gameConfig } from "@/lib/game-config"
 import { tailwindColorMap } from "@/lib/tailwind-colors"
+import DebugQuestions from "@/components/debug-questions"
 
 interface QuestionClientProps {
   params: Promise<{ category: string; points: string }>
@@ -132,6 +133,22 @@ export default function QuestionClient({ params, questions }: QuestionClientProp
         <div className="bg-white rounded-lg shadow-lg p-8 max-w-4xl w-full text-center" style={{ border: `2px solid ${gameConfig.colors.border}` }}>
           <h1 className={`text-3xl font-bold mb-8 category-title ${gameConfig.fonts.category.family}`}>Question Not Found</h1>
           <p className={`text-xl mb-8 question-text ${gameConfig.fonts.question.family}`}>Sorry, we couldn't find this question.</p>
+          
+          {/* Debug Information */}
+          <div className="mb-8 p-4 bg-gray-100 rounded-lg text-left">
+            <h3 className="font-bold mb-2">Debug Information:</h3>
+            <p><strong>Decoded Category:</strong> "{decodedCategory}"</p>
+            <p><strong>Points:</strong> {points}</p>
+            <p><strong>Question Key:</strong> {questionKey}</p>
+            <p><strong>Available Categories:</strong> {Object.keys(questions).join(", ")}</p>
+            <p><strong>Category Match:</strong> {questions[decodedCategory] ? "Found" : "Not Found"}</p>
+            {questions[decodedCategory] && (
+              <p><strong>Available Points:</strong> {Object.keys(questions[decodedCategory]).join(", ")}</p>
+            )}
+          </div>
+          
+          <DebugQuestions />
+          
           <div className="mt-8">
             <Link href="/game">
               <Button 
