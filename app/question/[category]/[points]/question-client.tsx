@@ -23,7 +23,6 @@ export default function QuestionClient({ params, questions }: QuestionClientProp
   const [isVideoReady, setIsVideoReady] = useState(false)
   const [videoError, setVideoError] = useState(false)
   const [retryCount, setRetryCount] = useState(0)
-  const [isVerticalVideo, setIsVerticalVideo] = useState(false)
   const maxRetries = 3
   const videoRef = useRef<HTMLVideoElement>(null)
 
@@ -133,13 +132,6 @@ export default function QuestionClient({ params, questions }: QuestionClientProp
   const handleVideoLoad = () => {
     setIsVideoLoading(false)
     setIsVideoReady(true)
-    
-    // Check if video is vertical (height > width)
-    if (videoRef.current) {
-      const video = videoRef.current
-      const aspectRatio = video.videoWidth / video.videoHeight
-      setIsVerticalVideo(aspectRatio < 1) // If aspect ratio < 1, it's vertical
-    }
   }
 
   const handleVideoError = () => {
@@ -278,13 +270,11 @@ export default function QuestionClient({ params, questions }: QuestionClientProp
                     ref={videoRef}
                     controls 
                     autoPlay 
-                    className="rounded-lg"
+                    className="w-full max-w-2xl rounded-lg"
                     style={{ 
                       border: `2px solid ${gameConfig.colors.border}`,
-                      maxWidth: isVerticalVideo ? '320px' : '672px', // max-w-sm = 320px, max-w-2xl = 672px
-                      maxHeight: isVerticalVideo ? '60vh' : 'none',
-                      width: '100%',
-                      height: 'auto'
+                      maxHeight: '70vh',
+                      objectFit: 'contain'
                     }}
                     onLoadedData={handleVideoLoad}
                     onError={handleVideoError}
