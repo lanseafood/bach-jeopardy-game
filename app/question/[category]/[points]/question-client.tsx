@@ -15,6 +15,7 @@ interface QuestionClientProps {
 
 export default function QuestionClient({ params, questions }: QuestionClientProps) {
   const [showAnswer, setShowAnswer] = useState(false)
+  const [category, setCategory] = useState("")
   const [decodedCategory, setDecodedCategory] = useState("")
   const [points, setPoints] = useState("")
   const [questionKey, setQuestionKey] = useState("")
@@ -28,8 +29,22 @@ export default function QuestionClient({ params, questions }: QuestionClientProp
   // Parse params
   useEffect(() => {
     const parseParams = async () => {
-      const { category, points: pointsParam } = await params
-      const decoded = decodeURIComponent(category)
+      const { category: categoryParam, points: pointsParam } = await params
+      setCategory(categoryParam)
+      
+      // Decode the category name - it might be double-encoded
+      let decoded = categoryParam
+      try {
+        // Try decoding multiple times in case it's double-encoded
+        decoded = decodeURIComponent(categoryParam)
+        // If it still contains encoded characters, decode again
+        if (decoded.includes('%')) {
+          decoded = decodeURIComponent(decoded)
+        }
+      } catch (error) {
+        console.error('Error decoding category:', error)
+        decoded = categoryParam
+      }
       setDecodedCategory(decoded)
       setPoints(pointsParam)
       setQuestionKey(`${decoded}-${pointsParam}`)
@@ -137,6 +152,7 @@ export default function QuestionClient({ params, questions }: QuestionClientProp
           {/* Debug Information */}
           <div className="mb-8 p-4 bg-gray-100 rounded-lg text-left">
             <h3 className="font-bold mb-2">Debug Information:</h3>
+            <p><strong>Original Category (from URL):</strong> "{category}"</p>
             <p><strong>Decoded Category:</strong> "{decodedCategory}"</p>
             <p><strong>Points:</strong> {points}</p>
             <p><strong>Question Key:</strong> {questionKey}</p>
