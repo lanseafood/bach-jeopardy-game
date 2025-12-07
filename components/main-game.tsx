@@ -153,7 +153,7 @@ export default function JeopardyBoard() {
   }
 
   const gameTitleStyle = {
-    fontSize: gameConfig.fonts.mainTitle.size,
+    fontSize: gameConfig.fonts.mainTitle.gamePageSize,
     fontFamily: '"ClassyVogue", sans-serif',
     color: gameTitleColor,
     whiteSpace: 'pre-line',
