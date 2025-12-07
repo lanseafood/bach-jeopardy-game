@@ -60,6 +60,7 @@ export default function LandingPage() {
     fontSize: gameConfig.fonts.mainTitle.size,
     fontFamily: '"ClassyVogue", sans-serif',
     lineHeight: 1,
+    whiteSpace: 'pre-line',
   }
 
   const secondaryButtonStyle = {

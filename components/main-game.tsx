@@ -156,6 +156,7 @@ export default function JeopardyBoard() {
     fontSize: gameConfig.fonts.mainTitle.size,
     fontFamily: '"ClassyVogue", sans-serif',
     color: gameTitleColor,
+    whiteSpace: 'pre-line',
   }
 
   return (
@@ -189,7 +190,7 @@ export default function JeopardyBoard() {
         </div>
         
         <div className="px-6 flex-1">
-          <div className="grid grid-cols-4 gap-4 md:gap-6 lg:gap-8 w-full h-full">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4 md:gap-5 lg:gap-6 w-full h-full">
             {categories.map((category) => (
               <div key={category} className="text-center flex flex-col h-full">
                 <h2 className={`${gameConfig.fonts.category.size} ${gameConfig.fonts.category.family} font-semibold mb-4 md:mb-6 category-title bg-white/30 py-2 px-4 rounded-lg shadow-sm`}>
@@ -222,7 +223,7 @@ export default function JeopardyBoard() {
                               digit === '0' ? (
                                 <Image
                                   key={index}
-                                  src="/corgi.png"
+                                  src="/aji.png"
                                   alt="0"
                                   width={16}
                                   height={16}

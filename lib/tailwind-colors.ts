@@ -11,6 +11,7 @@ export const tailwindColorMap: Record<string, string> = {
   "sunset-lightcream": "#FDF7EB",
   "sunset-green": "#6B8765",
   "sunset-darkgreen": "#4F5F1C",
+  "sunset-darkergreen": "#1f2706",
   "sunset-tan": "#896C43",
   "sunset-lighttan": "#D4A574",
   "sunset-darktan": "#B08756",
