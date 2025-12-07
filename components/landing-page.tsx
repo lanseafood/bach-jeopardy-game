@@ -60,6 +60,7 @@ export default function LandingPage() {
     fontSize: gameConfig.fonts.mainTitle.size,
     fontFamily: '"ClassyVogue", sans-serif',
     lineHeight: 1,
+    whiteSpace: 'pre-line',
   }
 
   const secondaryButtonStyle = {
@@ -79,17 +80,17 @@ export default function LandingPage() {
       {gameConfig.settings.showShootingStars && <ShootingStar />}
       
       {/* Landing page image - positioned independently */}
-      <div className="absolute inset-0 flex items-center justify-center z-0">
-        <div className="relative">
-          <div className="absolute inset-0 bg-gradient-radial from-transparent via-transparent to-black/30 rounded-full"></div>
+      <div className="absolute inset-0 z-0">
+        <div className="relative w-full h-full">
+          <div className="absolute inset-0 bg-gradient-radial from-transparent via-transparent to-black/30 rounded-full z-10"></div>
           <Image
             src={gameConfig.landingPage.image.src}
             alt={gameConfig.landingPage.image.alt}
-            width={gameConfig.landingPage.image.width}
-            height={gameConfig.landingPage.image.height}
-            className="opacity-100 object-contain"
+            fill
+            className="opacity-100 object-cover"
             priority
             unoptimized
+            sizes="100vw"
           />
         </div>
       </div>

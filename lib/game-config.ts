@@ -1,17 +1,17 @@
 // Game Configuration - Easy to customize for different people
 export const gameConfig = {
   // Game Title
-  title: "JeaJon Jeopardy",
+  title: "Sophia & Anhang's \n Safari Jeopardy",
   
   // Landing page image
   landingPage: {
     image: {
-      src: "/vancouver.png",
-      alt: "Vancouver",
-      width: 850,
-      height: 680,
+      src: "/safari.png",
+      alt: "Safari",
+      width: 800,
+      height: 600,
     },
-    titleColor: "sunset-cream",
+    titleColor: "sunset-darkergreen",
     backgroundGradient: {
       from: "sunset-orange", // sunset-
       via: "sunset-cream", // sunset-cream
@@ -28,12 +28,13 @@ export const gameConfig = {
     // Main title font (landing page and game board main titles only)
     mainTitle: {
       family: "font-classyvogue",
-      size: "6rem",
+      size: "6rem", // Landing page title size
+      gamePageSize: "3rem", // Game page title size
     },
     // Category title font (game board categories)
     category: {
       family: "font-mogilte",
-      size: "text-md md:text-md lg:text-md",
+      size: "text-md md:text-sm lg:text-sm",
     },
     // Question text font
     question: {
@@ -102,152 +103,114 @@ export const gameConfig = {
 
   // Categories and their questions
   categories: {
-    "Jeannie-ology 🧪": {
+    "🐾 Born to Be Wild": {
       100: {
-        question: "What app does Jeannie check religiously every morning?",
-        answer: {
-          type: "video",
-          content: "/videos/JEANNIE_100.mp4",
-        },
+        question: "What's the baby's gender?",
+        answer: "A Boy!",
       },
       200: {
-        question: "What color does Jeannie wear the most (and looks 🔥 in)?",
-        answer: {
-          type: "video",
-          content: "/videos/JEANNIE_200.mp4",
-        },
+        question: "What will the baby's name be?",
+        answer: "Kaisel",
       },
       300: {
-        question: "What is Jeannie's biggest \"ick\" in dating or relationships?",
-        answer: {
-          type: "video",
-          content: "/videos/JEANNIE_300.mp4",
-        },
+        question: "What will the baby's nickname be?",
+        answer: "Kai",
       },
       400: {
-        question: "If Luna could talk, what's the first thing she'd roast Jeannie about?",
-        answer: {
-          type: "video",
-          content: "/videos/JEANNIE_400.mp4",
-        },
+        question: "Where did the baby's name come from?",
+        answer: "Anime / Solo Leveling",
       },
       500: {
-        question: "What does Jeannie always say she's \"going to stop doing\" but never does?",
-        answer: {
-          type: "video",
-          content: "/videos/JEANNIE_500.mp4",
-        },
+        question: "Who suggested the baby's name?",
+        answer: "Sophia!",
       },
     },
-    "The Pits 🧻": {
+    "👑 Future King of the Jungle": {
       100: {
-        question: "How many sheets of TP does she use per poo",
-        answer: {
-          type: "video",
-          content: "/videos/PITS_100.mp4",
-        },
+        question: "What's the baby's zodiac sign going to be?",
+        answer: "Aquarius",
       },
       200: {
-        question: "Longest time she went without pooing",
-        answer: {
-          type: "video",
-          content: "/videos/PITS_200.mp4",
-        },
+        question: "What will the baby's Chinese zodiac be?",
+        answer: "Snake",
       },
       300: {
-        question: "Which Formula 1 driver would Jon risk it all for?",
-        answer: {
-          type: "video",
-          content: "/videos/PITS_300.mp4",
-        },
+        question: "What will the baby's birthstone be?",
+        answer: "Garnet",
       },
       400: {
-        question: "Longest poop Jeannie has ever done?",
-        answer: {
-          type: "video",
-          content: "/videos/PITS_400.mp4",
-        },
+        question: "How many weeks old is the baby today?",
+        answer: "32",
       },
       500: {
-        question: "What unhinged Jeannie quote belongs on a t-shirt?",
-        answer: {
-          type: "video",
-          content: "/videos/PITS_500.mp4",
-        },
+        question: "What vegetable or fruit size is the baby today?",
+        answer: "Cabbage or cantaloupe",
       },
     },
-    "Meet-Cute Moments 💞": {
+    "🤰 Belly of the Beast": {
       100: {
-        question: "What's a personality trait of hers that you admire the most?",
-        answer: {
-          type: "video",
-          content: "/videos/MEET_100.mp4",
-        },
+        question: "What food did Sophia crave during pregnancy?",
+        answer: "Orange juice or steak/beef",
       },
       200: {
-        question: "If you had met in high school, would you have dated him or put him in the \"friend zone\"?",
-        answer: {
-          type: "video",
-          content: "/videos/MEET_200.mp4",
-        },
+        question: "What has been the worst pregnancy symptom for Sophia?",
+        answer: "Leg cramps (\"charley horse\")",
       },
       300: {
-        question: "What was Jeannie's first impression of Jon?",
-        answer: {
-          type: "video",
-          content: "/videos/MEET_300.mp4",
-        },
+        question: "What food aversion has Sophia had?",
+        answer: "None",
       },
       400: {
-        question: "What's his favorite way to show affection when no one is watching?",
-        answer: {
-          type: "video",
-          content: "/videos/MEET_400.mp4",
-        },
+        question: "What movie do baby kicks remind Sophia of?",
+        answer: "Alien",
       },
       500: {
-        question: "What's a challenge you both faced early on that made your relationship stronger?",
-        answer: {
-          type: "video",
-          content: "/videos/MEET_500.mp4",
-        },
+        question: "How much sympathy weight did Anhang put on before dieting?",
+        answer: "7 lbs!!",
       },
     },
-    "Future Forecast 📈": {
+    "🧹 Zookeeper Duties & Doo-Doo-ties": {
       100: {
-        question: "Where are Jeannie and Jon planning to go for their honeymoon?",
-        answer: {
-          type: "video",
-          content: "/videos/FUTURE_100.mp4",
-        },
+        question: "Who will be better at assembling baby gear?",
+        answer: "Anhang",
       },
       200: {
-        question: "What's the one parenting rule he will swear he'll follow… but totally won't?",
-        answer: {
-          type: "video",
-          content: "/videos/FUTURE_200.mp4",
-        },
+        question: "What's the color theme for the baby room?",
+        answer: "Green",
       },
       300: {
-        question: "What's your ideal weekend routine as a married couple?",
-        answer: {
-          type: "video",
-          content: "/videos/FUTURE_300.mp4",
-        },
+        question: "What is Anhang's home project for the baby room?",
+        answer: "Building a closet",
       },
       400: {
-        question: "If you could predict one ridiculous argument you'll have as a married couple, what will it be about?",
-        answer: {
-          type: "video",
-          content: "/videos/FUTURE_400.mp4",
-        },
+        question: "What was the first baby item bought?",
+        answer: "Crib",
       },
       500: {
-        question: "What are you most looking forward to in your future together?",
-        answer: {
-          type: "video",
-          content: "/videos/FUTURE_500.mp4",
-        },
+        question: "Who will change more diapers?",
+        answer: "Sophia",
+      },
+    },
+    "🌍 Roam Sweet Roam": {
+      100: {
+        question: "Who is the baby's cousin?",
+        answer: "Alina",
+      },
+      200: {
+        question: "What classes has Sophia been taking for exercise?",
+        answer: "Barre",
+      },
+      300: {
+        question: "Where was the first babymoon?",
+        answer: "Banff",
+      },
+      400: {
+        question: "Where was the second babymoon?",
+        answer: "Big Sur",
+      },
+      500: {
+        question: "Where was the third babymoon?",
+        answer: "Japan",
       },
     },
   },
@@ -256,7 +219,7 @@ export const gameConfig = {
   floatingElements: {
     // Floating objects (previously corgis)
     floatingObjects: {
-      image: "/corgi.png",
+      image: "/aji.png",
       count: 6,
       sizes: {
         mobile: 65,
@@ -276,35 +239,35 @@ export const gameConfig = {
     floatingHeads: {
       images: [
         {
-          src: "/fh1.png",
+          src: "/anhang1.png",
           size: 85,
         },
         {
-          src: "/fh2.png", 
+          src: "/anhang2.png", 
           size: 75,
         },
         {
-          src: "/fh3.png",
+          src: "/anhang3.png",
           size: 65,
         },
         {
-          src: "/fh4.png",
+          src: "/sophia1.png",
           size: 65,
         },
         {
-          src: "/fh5.png",
+          src: "/sophia2.png",
           size: 75,
         },
         {
-          src: "/fh6.png",
+          src: "/sophia3.png",
           size: 70,
         },
         {
-          src: "/fh7.png",
+          src: "/tira.png",
           size: 80,
         },
         {
-          src: "/fh8.png",
+          src: "/tira.png",
           size: 60,
         },
       ],
@@ -321,19 +284,19 @@ export const gameConfig = {
     landingPageFloatingHeads: {
       images: [
         {
-          src: "/landing_fh1.png",
+          src: "/tira.png",
           size: 80,
         },
         {
-          src: "/landing_fh2.png", 
+          src: "/tira.png", 
           size: 70,
         },
         {
-          src: "/landing_fh3.png",
+          src: "/tira.png",
           size: 75,
         },
         {
-          src: "/landing_fh4.png",
+          src: "/tira.png",
           size: 65,
         },
       ],

@@ -153,9 +153,10 @@ export default function JeopardyBoard() {
   }
 
   const gameTitleStyle = {
-    fontSize: gameConfig.fonts.mainTitle.size,
+    fontSize: gameConfig.fonts.mainTitle.gamePageSize,
     fontFamily: '"ClassyVogue", sans-serif',
     color: gameTitleColor,
+    whiteSpace: 'pre-line',
   }
 
   return (
@@ -189,18 +190,28 @@ export default function JeopardyBoard() {
         </div>
         
         <div className="px-6 flex-1">
-          <div className="grid grid-cols-4 gap-4 md:gap-6 lg:gap-8 w-full h-full">
-            {categories.map((category) => (
-              <div key={category} className="text-center flex flex-col h-full">
-                <h2 className={`${gameConfig.fonts.category.size} ${gameConfig.fonts.category.family} font-semibold mb-4 md:mb-6 category-title bg-white/30 py-2 px-4 rounded-lg shadow-sm`}>
+          <div className="w-full">
+            {/* Category Headers Row */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4 md:gap-5 lg:gap-6 mb-4 md:mb-6">
+              {categories.map((category) => (
+                <h2 
+                  key={category} 
+                  className={`${gameConfig.fonts.category.size} ${gameConfig.fonts.category.family} font-semibold category-title bg-white/30 py-2 px-2 sm:px-3 md:px-4 rounded-lg shadow-sm text-center min-h-[3rem] sm:min-h-[3.5rem] md:min-h-[4rem] flex items-center justify-center`}
+                >
                   {category}
                 </h2>
-                {pointValues.map((points) => {
+              ))}
+            </div>
+            
+            {/* Questions Grid */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4 md:gap-5 lg:gap-6">
+              {pointValues.map((points) => (
+                categories.map((category) => {
                   const questionKey = `${category}-${points}`
                   const isAnswered = isHydrated && showAnswers.has(questionKey)
 
                   return (
-                    <div key={questionKey} className="mb-2">
+                    <div key={questionKey} className="w-full">
                       {isAnswered ? (
                         <Link 
                           href={`/question/${encodeURIComponent(category)}/${points}`} 
@@ -217,24 +228,26 @@ export default function JeopardyBoard() {
                             e.currentTarget.style.opacity = '0.8'
                           }}
                         >
-                          <div className="flex items-center gap-1">
-                            {points.toString().split('').map((digit, index) => (
-                              digit === '0' ? (
-                                <Image
-                                  key={index}
-                                  src="/corgi.png"
-                                  alt="0"
-                                  width={16}
-                                  height={16}
-                                  className="object-contain animate-bounce-subtle md:w-5 md:h-5 lg:w-6 lg:h-6"
-                                  priority
-                                />
-                              ) : (
-                                <span key={index} className="text-sm md:text-base lg:text-lg font-semibold">
-                                  {digit}
-                                </span>
-                              )
-                            ))}
+                          <div className="flex items-center justify-center gap-1">
+                            <span className="text-sm md:text-base lg:text-lg font-semibold">
+                              {points.toString()[0]}
+                            </span>
+                            <Image
+                              src="/aji.png"
+                              alt="aji"
+                              width={16}
+                              height={16}
+                              className="object-contain animate-bounce-subtle md:w-5 md:h-5 lg:w-6 lg:h-6"
+                              priority
+                            />
+                            <Image
+                              src="/tira.png"
+                              alt="tira"
+                              width={16}
+                              height={16}
+                              className="object-contain animate-bounce-subtle md:w-5 md:h-5 lg:w-6 lg:h-6"
+                              priority
+                            />
                           </div>
                         </Link>
                       ) : (
@@ -258,9 +271,9 @@ export default function JeopardyBoard() {
                       )}
                     </div>
                   )
-                })}
-              </div>
-            ))}
+                })
+              ))}
+            </div>
           </div>
         </div>
       </div>

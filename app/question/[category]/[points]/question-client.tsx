@@ -233,7 +233,7 @@ export default function QuestionClient({ params, questions }: QuestionClientProp
         {showAnswer && (
           <div className="mb-16 answer-box p-8">
             {typeof questionData.answer === "string" ? (
-              <div className={`text-xl text-left whitespace-pre-line question-text ${gameConfig.fonts.question.family}`}>{questionData.answer}</div>
+              <div className={`text-xl text-center whitespace-pre-line question-text ${gameConfig.fonts.question.family}`}>{questionData.answer}</div>
             ) : (
               <div className="flex justify-center">
                 <div className="relative">
