@@ -28,7 +28,7 @@ export const gameConfig = {
     // Main title font (landing page and game board main titles only)
     mainTitle: {
       family: "font-classyvogue",
-      size: "4rem",
+      size: "6rem",
     },
     // Category title font (game board categories)
     category: {
